@@ -12,7 +12,7 @@ def add_args():
         for count in range(1, len(argv)):
             result +=  int(argv[count])
     
-        print(result)
+        print("{:d}".format(result))
 
 if __name__ == "__main__":
     add_args()
