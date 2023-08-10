@@ -16,6 +16,6 @@ if __name__ == "__main__":
 
     print("{} {}{}".format(num_of_args, arg_placeholder,deliminator))
 
-    for count, args in enumerate(argv[1:], start=1):
+    for count, args in enumerate(argv):
         if (count > 0):
             print("{}: {}".format(count, args))
