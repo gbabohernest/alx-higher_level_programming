@@ -4,9 +4,10 @@ import sys
 
 def num_of_args():
 
-    num_of_args = len(sys.argv) - 1
     arg_placeholder = "arguments"
     deliminator = "."
+    
+    num_of_args = len(sys.argv) - 1
 
     if (num_of_args == 1):
         arg_placeholder = "argument"
