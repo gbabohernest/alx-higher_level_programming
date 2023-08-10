@@ -6,12 +6,12 @@ def num_of_args():
 
     num_of_args = len(sys.argv) - 1
     arg_placeholder = "arguments"
-    deliminator = ":"
+    deliminator = "."
 
     if (num_of_args == 1):
         arg_placeholder = "argument"
-    if (num_of_args == 0):
-          deliminator = "."
+    if (num_of_args > 0):
+          deliminator = ":"
 
     print("{} {}{}".format(num_of_args, arg_placeholder, deliminator))
 
