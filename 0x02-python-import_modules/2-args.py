@@ -11,7 +11,7 @@ if __name__ == "__main__":
     if (num_of_args == 1):
         arg_placeholder = "argument"
 
-    if (num_of_args > 0):
+    if (num_of_args - 1 >= 0):
         deliminator = ":"
 
     print("{} {}{}".format(num_of_args, arg_placeholder,deliminator))
