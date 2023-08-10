@@ -17,7 +17,8 @@ def num_of_args():
 
     
     for count, args in enumerate(sys.argv[1:], start=1):
-        print("{}: {}".format(count, args))
+        if (count > 0):
+            print("{}: {}".format(count, args))
 
 if __name__ == "__main__":
     num_of_args()
