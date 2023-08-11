@@ -2,6 +2,7 @@
 
 from sys import argv, exit
 
+
 def my_calculator():
 
     from calculator_1 import add, sub, mul, div
@@ -23,6 +24,7 @@ def my_calculator():
     else:
         result = valid_operations[operator](a, b)
         print("{} {} {} = {}".format(a, operator, b, result))
+
 
 if __name__ == "__main__":
     my_calculator()
