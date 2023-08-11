@@ -14,7 +14,7 @@ if __name__ == "__main__":
     if (num_of_args - 1 >= 0):
         deliminator = ":"
 
-    print("{} {}{}".format(num_of_args, arg_placeholder,deliminator))
+    print("{} {}{}".format(num_of_args, arg_placeholder, deliminator))
 
     for count, args in enumerate(argv):
         if (count > 0):
