@@ -29,4 +29,4 @@ def add_tuple(tuple_a=(), tuple_b=()):
     elif tuple_a_length == 0 and tuple_b_length == 1:
         result = (0 + tuple_b[0], 0 + 0)
         return result
-    return result (0, 0)
+    return result(0, 0)
