@@ -2,7 +2,7 @@
 
 def update_dictionary(a_dictionary, key, value):
 
-    if all([a_dictionary, key, value]) and isinstance(key, str):
+    if  isinstance(key, str) and a_dictionary is not None:
         a_dictionary[key] = value
         return a_dictionary
     else:
