@@ -12,8 +12,7 @@ def safe_print_integer(value):
 
     if value is not None:
         try:
-            if isinstance(value, int):
-                print("{:d}".format(value))
+            print("{:d}".format(value))
             return True
         except ValueError as error:
             return False
