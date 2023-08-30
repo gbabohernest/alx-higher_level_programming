@@ -68,7 +68,11 @@ class Square():
             print()
             return
         char = "#"
-        for line in range(self.__position[1]):
-            print()
-        for i in range(self.__size):
-            print("{}{}".format(" " * self.__position[0], char * self.__size))
+        for i in range(0, self.__position[1]):
+            print("")
+        for i in range(0, self.__size):
+            for j in range(0, self.__position[0]):
+                print(" ", end="")
+            for k in range(0, self.__size):
+                print("{}".format(char), end="")
+            print("")
