@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python4
 
 """
   Square: define a square instance
@@ -56,7 +56,7 @@ class Square():
             if isinstance(value[0], int) and isinstance(value[1], int):
                 if value[0] >= 0 and value[1] >= 0:
                     self.__position = value
-        return TypeError("position must be a tuple of 2 positive integers")
+        raise TypeError("position must be a tuple of 2 positive integers")
 
     """
         prints to the stdout the square with the char '#'
