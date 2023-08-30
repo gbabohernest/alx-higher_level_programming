@@ -51,13 +51,13 @@ class Square():
         set private instance attribute
     """
     @position.setter
-    def position(self, position):
-        if (not isinstance(position, tuple) or len(position) is not 2 or
-                not isinstance(position[0], int) or not
-                isinstance(position[1], int) or position[0] < 0
-                or position[1] < 0):
+    def position(self, value):
+        if (type(value) == tuple and len(value) == 2
+                and type(value[0]) is int and type(value[1])
+                is int and value[0] >= 0 and value[1] >=0):
+            self.__position = value
+        else:
             raise TypeError("position must be a tuple of 2 positive integers")
-        self.__position = position
 
     """
         prints to the stdout the square with the char '#'
@@ -68,11 +68,11 @@ class Square():
             print("")
             return
         char = "#"
-        for i in range(0, self.__position[1]):
+        for i in range(self.__position[1]):
             print("")
-        for i in range(0, self.__size):
-            for j in range(0, self.__position[0]):
+        for i in range(self.__size):
+            for j in range(self.__position[0]):
                 print(" ", end="")
-            for k in range(0, self.__size):
+            for k in range(self.__size):
                 print("{}".format(char), end="")
             print("")
