@@ -15,6 +15,14 @@ class Square():
         self.__position = position
 
     """
+         area - calculate square area
+         return: current sq area
+    """
+    def area(self):
+        result = self.__size * self.__size
+        return result
+
+    """
         Retrieve private instance attribute
     """
     @property
@@ -50,14 +58,6 @@ class Square():
                     self.__position = value
                     return
         raise TypeError("position must be a tuple of 2 positive integers")
-
-    """
-        area - calculate square area
-        return: current sq area
-    """
-    def area(self):
-        result = self.__size * self.__size
-        return result
 
     """
         prints to the stdout the square with the char '#'
