@@ -42,11 +42,15 @@ class Square:
         return result
 
     """
-        prints the char '#' square times
+        prints to the stdout the  square with the char '#'
+        newline if size is zero
     """
     def my_print(self):
+        if self.__size == 0:
+            print()
+            return
         char = "#"
         for i in range(self.__size):
-            if self.__size == 0:
-                print()
-            print("{}".format(char * self.__size))
+            for j in range(self.__size):
+                print("{}".format(char), end="")
+            print()
