@@ -65,7 +65,7 @@ class Square():
     """
     def my_print(self):
         if self.__size == 0:
-            print()
+            print("")
             return
         char = "#"
         for i in range(0, self.__position[1]):
