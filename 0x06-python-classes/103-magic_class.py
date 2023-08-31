@@ -6,6 +6,7 @@
 
     Representation of a circle
 """
+import math
 
 
 class MagicClass:
