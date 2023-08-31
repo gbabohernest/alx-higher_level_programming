@@ -16,10 +16,9 @@ class MagicClass:
     """
     def __init__(self, radius=0):
         self.__radius = 0
-        if type(radius) == int or type(radius) == float:
-            self.__radius = radius
-        else:
-            raise TypeError("radius must a number")
+        if type(radius) is not int and type(radius) is not float:
+            raise TypeError("radius must be a number")
+        self.__radius = radius
 
     """Return the area of the cirle"""
     def area(self):
