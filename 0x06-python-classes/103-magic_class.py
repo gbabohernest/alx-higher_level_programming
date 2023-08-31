@@ -14,6 +14,7 @@ class MagicClass:
         @radius : int or float
     """
     def __init__(self, radius=0):
+        self.__radius = 0
         if type(radius) == int or type(radius) == float:
             self.__radius = radius
         else:
