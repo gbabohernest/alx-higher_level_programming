@@ -37,6 +37,7 @@ class Square():
         return self.__position
 
     """set the position"""
+    @position.setter
     def position(self, value):
         is_tuple = isinstance(value, tuple)
         is_len = len(value) == 2
@@ -60,8 +61,8 @@ class Square():
         if self.__size == 0:
             print()
         else:
-            for i in range(self.__position[1]):
+            for _ in range(self.__position[1]):
                 print()
-            for x in range(self.__size):
+            for _ in range(self.__size):
                 print("{}".format(sp * self.__position[0]), end='')
                 print("{}".format(ch * self.__size))
