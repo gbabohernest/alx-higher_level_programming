@@ -23,15 +23,14 @@ class Node:
     """set the data of the node"""
     @data.setter
     def data(self, value):
-        if type(value) is int:
-            self.__data = value
-        else:
+        if type(value) is not int:
             raise TypeError("data must be an integer")
+        self.__data = value
 
     """retrieves the node"""
     @property
     def next_node(self):
-        return self.__next_node
+        return (self.__next_node)
 
     """set the next node"""
     @next_node.setter
@@ -78,10 +77,10 @@ class SinglyLinkedList:
         print a list in string format
     """
     def __str__(self):
-        tmp = self.__head
         result = []
+        tmp = self.__head
         while tmp is not None:
             result.append(str(tmp.data))
             tmp = tmp.next_node
 
-        return ("\n".join(result))
+        return ('\n'.join(result))
