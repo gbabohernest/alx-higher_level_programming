@@ -50,16 +50,24 @@ class Square():
     def area(self):
         return self.__size * self.__size
 
+    """formats how spaces should
+       be used when printing
+    """
+    def format_print(self):
+        sp = ""
+        if self.size == 0:
+            return "\n"
+
+        for _ in range(self.position[1]):
+            sp += "\n"
+
+        for _ in range(self.size):
+            sp += " " * self.position[0] + "#" * self.size + "\n"
+        return sp
+
     """prints in stdout the square with char #"""
     def my_print(self):
-        if self.size == 0:
-            print("\n")
-
-        [print("") for i in range(self.position[1])]
-        for i in range(self.size):
-            [print(" ", end='') for j in range(self.position[0])]
-            [print("#", end='') for k in range(self.size)]
-            print("")
+        print(self.format_print(), end='')
 
     def __str__(self):
         self.my_print()
