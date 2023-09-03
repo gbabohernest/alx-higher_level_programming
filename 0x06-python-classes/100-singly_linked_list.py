@@ -23,7 +23,7 @@ class Node:
     """set the data of the node"""
     @data.setter
     def data(self, value):
-        if type(value) is not int:
+        if not isinstance(value, int):
             raise TypeError("data must be an integer")
         self.__data = value
 
@@ -35,7 +35,7 @@ class Node:
     """set the next node"""
     @next_node.setter
     def next_node(self, value):
-        if not isinstance(value, Node) and value is not None:
+        if value != None and  not isinstance(value, Node):
             raise TypeError("next_node must be a Node object")
         self.__next_node = value
 
@@ -60,18 +60,20 @@ class SinglyLinkedList:
             """set head to be the new node"""
             new_node.next_node = None
             self.__head = new_node
+            return
 
-        elif self.__head.data > value:
+        if self.__head.data > value:
             new_node.next_node = self.__head
             self.__head = new_node
+            return
 
-        else:
-            tmp = self.__head
-            while (tmp.next_node is not None and
-                    tmp.next_node.data < value):
+        tmp = self.__head
+
+        while (tmp.next_node is not None and
+                tmp.next_node.data < value):
                 tmp = tmp.next_node
-            new_node.next_node = tmp.next_node
-            tmp.next_node = new_node
+        new_node.next_node = tmp.next_node
+        tmp.next_node = new_node
 
     """
         print a list in string format
