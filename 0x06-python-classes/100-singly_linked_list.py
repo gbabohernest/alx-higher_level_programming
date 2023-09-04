@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
-"""Define a node of a
-   singly linked list
-"""
+"""Define a node of a singly linked list"""
 
 
 class Node:
+    """class node - defines a node"""
+
     """
        instantiate with data next_node
        @data: data (int) of the node
@@ -18,7 +18,7 @@ class Node:
     """retrieves the data of the node"""
     @property
     def data(self):
-        return self.__data
+        return (self.__data)
 
     """set the data of the node"""
     @data.setter
@@ -35,7 +35,7 @@ class Node:
     """set the next node"""
     @next_node.setter
     def next_node(self, value):
-        if value is not None and not isinstance(value, Node):
+        if (value is not None and not isinstance(value, Node)):
             raise TypeError("next_node must be a Node object")
         self.__next_node = value
 
@@ -47,7 +47,7 @@ class Node:
 
 class SinglyLinkedList:
     def __init__(self):
-        self.__head = None
+        self.head = None
 
     """
         inserts a new node into correct
@@ -56,18 +56,18 @@ class SinglyLinkedList:
     def sorted_insert(self, value):
         new_node = Node(value)
 
-        if self.__head is None:
+        if self.head is None:
             """set head to be the new node"""
             new_node.next_node = None
-            self.__head = new_node
+            self.head = new_node
             return
 
-        if self.__head.data > value:
-            new_node.next_node = self.__head
-            self.__head = new_node
+        if self.head.data > value:
+            new_node.next_node = self.head
+            self.head = new_node
             return
 
-        tmp = self.__head
+        tmp = self.head
 
         while (tmp.next_node is not None and
                 tmp.next_node.data < value):
@@ -80,7 +80,7 @@ class SinglyLinkedList:
     """
     def __str__(self):
         result = []
-        tmp = self.__head
+        tmp = self.head
         while tmp is not None:
             result.append(str(tmp.data))
             tmp = tmp.next_node
