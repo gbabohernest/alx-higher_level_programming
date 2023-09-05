@@ -18,7 +18,7 @@ class Rectangle:
         """
         self.width = width
         self.height = height
-        Rectangle.number_of_instances += 1
+        type(self).number_of_instances += 1
 
     @property
     def width(self):
@@ -86,16 +86,8 @@ class Rectangle:
 
     def __del__(self):
         """prints a message when an instance is deleted"""
-        Rectangle.number_of_instances -= 1
+        type(self).number_of_instances -= 1
         print("Bye rectangle...")
-
-    def __ge__(self, obj):
-        """define >= comparision of instances"""
-        return self.area() >= obj.area()
-
-    def __eq__(self, obj):
-        """define == comparison of instances"""
-        return self.area() == obj.area()
 
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
@@ -108,10 +100,10 @@ class Rectangle:
         if not isinstance(rect_2, Rectangle):
             raise TypeError("rect_2 must be an instance of Rectangle")
 
-        if rect_1 == rect_2:
+        if rect_1.area() == rect_2.area():
             return rect_1
 
-        if rect_1 >= rect_2:
+        if rect_1.area() >= rect_2.area():
             return rect_1
         else:
             return rect_2
