@@ -40,6 +40,26 @@ Add positive float with the default argument
     >>> add_integer(2.0)
     100
 
+Add negative float with the default argument
+    >>> add_integer(-2.0)
+    96
+
+Add negative integer with the default argument
+    >>> add_integer(-2)
+    96
+
+Adding a string with the default argument
+    >>> add_integer("hello")
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Adding a letter with the default value
+    >>> add_integer('a')
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
 WORKING WITH FLOATING-POINT VALUES
 
 NOTE: floats are cast to  integer before addition is perfomed
@@ -51,7 +71,11 @@ Add two positive floats
 Add one negative float and one positive float
     >>> add_integer(-3.5, 4.5)
     1
- 
+
+Add two negative floats
+    >>> add_integer(-1.2, -4.2)
+    -5
+
 ADD FLOAT AND INTEGER
 
 Add a positive float and a positive integer
@@ -62,17 +86,37 @@ Add a positive float and a negative integer
     >>> add_integer(5.5, -3)
     2
 
+Add a negative float and a positive integer
+    >>> add_integer(-2.0, 4)
+    2
+
 Add negatve float and a negative integer
     >>> add_integer(-10.5, -2)
     -12
 
 ADD NON-NUMBERS WITH NUMBERS
 
+Adding a letter and a number
+    >>> add_integer('g', 2)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+    >>> add_integer(5, 'I')
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
 Adding an integer with a string
     >>> add_integer(2, "Python")
     Traceback (most recent call last):
         ...
     TypeError: b must be an integer
+
+    >>> add_integer("IsCool", 4)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
 
 Adding two letters
     >>> add_integer('a', 'b')
@@ -92,6 +136,18 @@ Passing None as argument to first parameter
         ...
     TypeError: a must be an integer
 
+Passing None as argument to default parameter
+    >>> add_integer(3.0, None)
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+Passing no argument
+    >>> add_integer()
+    Traceback (most recent call last):
+       ...
+    TypeError: add_integer() missing 1 required positional argument: 'a'
+
 WRONG TYPE CHECKING
 
 Adding a tuple with the default value
@@ -99,6 +155,12 @@ Adding a tuple with the default value
     Traceback (most recent call last):
         ...
     TypeError: a must be an integer
+
+Add a tuple as second argument
+    >>> add_integer(2, (5,1))
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
 
 Adding a list with the default value
     >>> add_integer([])
@@ -112,6 +174,17 @@ Adding a list as second argument
         ...
     TypeError: b must be an integer
  
+Adding a dictionary with the default argument
+    >>> add_integer({})
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Adding a dictionary as the second argument
+    >>> add_integer(12, {})
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
 
 CHECKING NAN
 
@@ -133,6 +206,11 @@ CHECKING INFINITY
     OverflowError: cannot convert float infinity to integer
 
     >>> add_integer(float('inf'), float('-inf'))
+    Traceback (most recent call last):
+        ...
+    OverflowError: cannot convert float infinity to integer
+
+    >>> add_integer(1, float('inf'))
     Traceback (most recent call last):
         ...
     OverflowError: cannot convert float infinity to integer
