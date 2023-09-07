@@ -1,0 +1,116 @@
+============================
+How to use 0-add_integer.py
+============================
+This is a test module for an integer addition function ``add_integer(a, b=98)``
+The function takes two arguments (a, b) integer or float and return the sum of
+two numbers as integer. The numbers are typecast to integer  before the addition is done.
+The second argument is given a dafault value of 98, if no value is pass in during the function call
+ 
+Usage
+=====
+```add_integer(..)``` - returns the addition of its two arguments. The operatiois done using the ``+`` operator
+
+Import function form the module:
+    >>> add_integer = __import__('0-add_integer').add_integer
+
+Checking for module docstring:
+    >>> module = __import__("0-add_integer").__doc__
+    >>> len(module) > 1
+    True
+
+Checking for function docstring
+    >>> fn = __import__("0-add_integer").add_integer.__doc__
+    >>> len(fn) > 1
+    True
+
+
+Integer addition
+    >>> add_integer(1, -2)
+    -1
+
+    >>> add_integer(-1, -3)
+    -4
+
+    >>> add_integer(5, -2.5)
+    3
+
+
+Floats addition
+    >>> add_integer(1.4, 2)
+    3
+
+    >>> add_integer(2.0, 2.0)
+    4
+
+    >>> add_integer(1.5, -2.5)
+    -1
+
+    >>> add_integer(-3.0, -2.0)
+    -5
+
+Strings addition
+    >>> add_integer("Hello", "World")
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+    >>> add_integer(1, "2")
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+  
+Checking regular addition
+    >>> add_integer(3, 2)
+    5
+
+Casting to integer
+    >>> add_integer(True, False)
+    1
+
+Checking the type
+    >>> type(add_integer(2.0, 1))
+    <class 'int'>
+
+    >>> type(add_integer(True, False))
+    <class 'int'>
+
+Checking float overflow 
+    >>> add_integer(float("inf"), 3)
+    Traceback (most recent call last):
+        ...
+    OverflowError: cannot convert float infinity to integer
+ 
+    >>> add_integer(float("inf"), float("inf"))
+    Traceback (most recent call last):
+        ...
+    OverflowError: cannot convert float infinity to integer
+ 
+    >>> add_integer(1, float("inf"))
+    Traceback (most recent call last):
+        ...
+    OverflowError: cannot convert float infinity to integer
+
+
+Checking float NaN  to integer
+    >>> add_integer(float('nan'), 3)
+    Traceback (most recent call last):
+        ...
+    ValueError: cannot convert float NaN to integer
+
+    >>> add_integer(3, float('nan'))
+    Traceback (most recent call last):
+        ...
+    ValueError: cannot convert float NaN to integer
+
+
+Missing one agrument test
+    >>> add_integer(2)
+    Traceback (most recent call last):
+        ...
+    TypeError: add_integer() missing 1 required positional argument: 'b'
+
+Missing two arguments test
+    >>> add_integer()
+    Traceback (most recent call last):
+        ...
+    TypeError: add_integer() missing 2 required positional arguments: 'a' and 'b'
