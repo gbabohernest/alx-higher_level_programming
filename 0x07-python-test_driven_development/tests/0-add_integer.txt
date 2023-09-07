@@ -105,12 +105,16 @@ Checking float NaN  to integer
 
 Missing one agrument test
     >>> add_integer(2)
-    Traceback (most recent call last):
-        ...
-    TypeError: add_integer() missing 1 required positional argument: 'b'
+    100
 
 Missing two arguments test
     >>> add_integer()
     Traceback (most recent call last):
         ...
-    TypeError: add_integer() missing 2 required positional arguments: 'a' and 'b'
+    TypeError: add_integer() missing 1 required positional argument: 'a'
+
+Passing None
+    >>> add_integer(None)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
