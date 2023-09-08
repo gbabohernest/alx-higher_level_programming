@@ -1,0 +1,66 @@
+====================================
+TEST FOR MODULE  4-print_square.py
+====================================
+
+
+This is a test module for a function ``print_square(size)``. Prints a
+square with the character '#'
+
+    Args:      
+        size - length of the square.
+               must be an integer
+    Raises:
+         TypeError: if size is not an integer.
+         ValueError: if size < 0
+         TypeError: if size is a float and is < 0 
+
+
+Import function form the module:
+>>> print_square = __import__('4-print_square').print_square
+
+===========
+Empty Input
+===========
+>>> print_square()
+Traceback (most recent call last):
+   ...
+TypeError: print_square() missing 1 required positional argument: 'size'
+
+>>> print_square(None)
+Traceback (most recent call last):
+    ...
+TypeError: size must be an integer
+
+============
+Valid inputs
+============
+>>> print_square(4)
+####
+####
+####
+####
+
+>>> print_square(0)
+
+==============
+Invalid inputs
+==============
+>>> print_square(-4)
+Traceback (most recent call last):
+    ...
+ValueError: size must be >= 0
+
+>>> print_square(10.0)
+Traceback (most recent call last):
+    ...
+TypeError: size must be an integer
+
+>>> print_square(-10.0)
+Traceback (most recent call last):
+    ...
+TypeError: size must be an integer
+
+>>> print_square("4")
+Traceback (most recent call last):
+    ...
+TypeError: size must be an integer
