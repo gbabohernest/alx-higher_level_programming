@@ -59,8 +59,6 @@ who.
 am:
 <BLANKLINE>
 i
-<BLANKLINE>
-
 
 >> text_indentation(".hi:there")
 .
@@ -83,13 +81,11 @@ hello
 
 >>> text_indentation("Welcome Home")
 Welcome Home
-<BLANKLINE>
 
 >>> text_indentation("Welcome.Home")
 Welcome.
 <BLANKLINE>
 Home
-<BLANKLINE>
 
 >> text_indentation("Welcome. Home? How are you: John")
 Welcome.
@@ -118,6 +114,7 @@ and :
 
 >>> text_indentation("Let's try something new here! Here goes:\nPrinted.")
 Let's try something new here! Here goes:
+<BLANKLINE>
 <BLANKLINE>
 Printed.
 <BLANKLINE>
