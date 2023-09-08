@@ -1,0 +1,104 @@
+======================================
+TEST FOR MODULE  5-text_indentation.py
+======================================
+
+This is a test module for a function ``text_indentation(text)``.
+
+    Arg:      
+        text - must be a string
+
+    Description: prints a text with 2 new lines after encountering
+                 each of these character ".?:"
+    Raises:
+         TypeError: if text is not a string
+
+
+import function from module
+>>> text_indentation = __import__("5-text_indentation").text_indentation
+
+==================
+test empty strings
+==================
+>>> text_indentation()
+Traceback (most recent call last):
+    ...
+TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+>>> text_indentation("   Hi.")
+Hi.
+<BLANKLINE>
+
+
+============
+wrong inputs
+============
+>>> text_indentation(7)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+
+>>> text_indentation({"one": 1, "two": 2})
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+>>> text_indentation(None)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+============
+valid inputs
+============
+>>> text_indentation("?who.am:i")
+?
+<BLANKLINE>
+who.
+<BLANKLINE>
+am:
+<BLANKLINE>
+i
+<BLANKLINE>
+
+
+>> text_indentation(".hi:there")
+.
+<BLANKLINE>
+hi:
+<BLANKLINE>
+there
+
+>>> text = "Am.?     Glad."
+>>> text_indentation(text)
+Am.
+<BLANKLINE>
+?
+<BLANKLINE>
+Glad.
+<BLANKLINE>
+
+>> text_indentation("hello")
+hello
+
+
+>>> text = "this works fine? Yes! it does. next we test for: ?, . and :"
+>>> text_indentation(text)
+this works fine?
+<BLANKLINE>
+Yes! it does.
+<BLANKLINE>
+next we test for:
+<BLANKLINE>
+?
+<BLANKLINE>
+, .
+<BLANKLINE>
+and :
+<BLANKLINE>
+
+>>> text_indentation("Let's try something new here! Here goes:\nPrinted.")
+Let's try something new here! Here goes:
+<BLANKLINE>
+Printed.
+<BLANKLINE>
