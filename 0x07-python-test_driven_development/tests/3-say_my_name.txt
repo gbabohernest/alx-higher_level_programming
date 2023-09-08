@@ -1,0 +1,70 @@
+====================================
+TEST FOR MODULE  3-say_my_name.py
+====================================
+
+This is a test module for a function ``say_my_name(first_name, last_name="")``.
+
+    Args:      
+        first_name - must be a string of letters | single character
+        last_name - can be am empty string | must be a string
+                     of letters | a single character
+
+    Description: prints user fullname when given
+                ``My name is <first name> <last name>
+    Raises:
+         TypeError: first_name must be a string or last_name must be string
+
+    Prints: My name is <first name> <last name>
+
+Import function form the module:
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+===============================================
+Check missing argument | None given as arugment
+=============================================== 
+>>> say_my_name()
+Traceback (most recent call last):
+    ...
+TypeError: say_my_name() missing 1 required positional argument: 'first_name'
+
+>>> say_my_name(None)
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
+
+==============
+Regular checks
+==============
+>>> say_my_name("Ernest", "Gbaboh")
+My name is Ernest Gbaboh
+
+>>> say_my_name("gbaboh")
+My name is gbaboh 
+
+==========================
+Check wrong type of inputs
+==========================
+>>> say_my_name(1, 1)
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
+
+>>> say_my_name({"Jude": 22, "Bellingham": 5}, 20)
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
+
+>>> say_my_name("Genesis", ["Isbat", "YLM", "JJH"])
+Traceback (most recent call last):
+    ...
+TypeError: last_name must be a string
+
+>>> say_my_name(22, "Genesis")
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
+
+>>> say_my_name("Isco", 1)
+Traceback (most recent call last):
+    ...
+TypeError: last_name must be a string
