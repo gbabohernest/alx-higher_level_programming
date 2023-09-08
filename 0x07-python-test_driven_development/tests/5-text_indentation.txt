@@ -81,6 +81,25 @@ Glad.
 >> text_indentation("hello")
 hello
 
+>>> text_indentation("Welcome Home")
+Welcome Home
+<BLANKLINE>
+
+>>> text_indentation("Welcome.Home")
+Welcome.
+<BLANKLINE>
+Home
+<BLANKLINE>
+
+>> text_indentation("Welcome. Home? How are you: John")
+Welcome.
+<BLANKLINE>
+Home?
+<BLINKLINE>
+How are you:
+<BLINKLINE>
+John
+<BLANKLINE>
 
 >>> text = "this works fine? Yes! it does. next we test for: ?, . and :"
 >>> text_indentation(text)
