@@ -1,0 +1,99 @@
+====================================
+TEST FOR MODULE  2-matrix_divided.py
+====================================
+
+This is a test module for matrix division function ``matrix_divided(matrix, div)``.
+
+    Args:      
+        matrix - a list of lists of integer or floats numbers
+        div - the divisor, must be a number and cannot be == 0
+
+    Description: Each row of the matrix is divided by the divisior.
+                 Every row in the matrix should have the same length 
+    Raises:
+         TypeError: if matrix is not a list of list of int | floats.
+         TypeError: if each row of the matrix is not the same size
+         ZeroDivisionError: if div == 0
+
+Return: new list of matrix containing the result from each division operation
+
+==================================================================
+Note: The quotients are rounded to a maximum of two decimal places
+==================================================================
+
+
+Import function form the module:
+>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+>>> matrix = [[1, 2, 3],[4, 5, 6]]
+
+Checking the result
+>>> matrix_divided(matrix, 3)
+[[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+>>> print(matrix)
+[[1, 2, 3], [4, 5, 6]]
+
+
+>>> matrix = [[1, 2, "3", 7],[4, 5, 6]]
+
+Sending a string instead of an integer
+>>> matrix_divided(matrix, 2)
+Traceback (most recent call last):
+    ...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+
+>>> matrix = [1, 2]
+
+Sending a list
+>>> matrix_divided(matrix, 2)
+Traceback (most recent call last):
+    ...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+
+>>> matrix_divided([[3, 9], [15, 3]], "3")
+Traceback (most recent call last):
+    ...
+TypeError: div must be a number
+
+
+Trying to divide by zero
+>>> matrix_divided(matrix, 0)
+Traceback (most recent call last):
+    ...
+ZeroDivisionError: division by zero
+
+
+Test floats numbers
+>>> matrix_divided([[-2.2, 3.3], [4.4, -6.6]], 3)
+[[-0.73, 1.1], [1.47, -2.2]]
+
+floats and integers
+>>> matrix = [[1, -2.2, 5], [-6.6, 7.00, 8]]
+>>> matrix_divided(matrix, 3)
+[[0.33, -0.73, 1.67], [-2.2, 2.33, 2.67]]
+
+
+>>> matrix = [[1, 2, 3, 7],[4, 5, 6]]
+
+Sending a matrix that has a longer row
+>>> matrix_divided(matrix, 2)
+Traceback (most recent call last):
+    ...
+TypeError: Each row of the matrix must have the same size
+
+
+>>> matrix_divided([[3, "9"], [15, 3]], 3)
+Traceback (most recent call last):
+    ...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+>>> matrix_divided([[3, 9], [15, 3]])
+Traceback (most recent call last):
+    ...
+TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+>>> matrix = [[1, 1, 1, 4, 4, 5]]
+>>> matrix_divided(matrix, float("inf"))
+[[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
