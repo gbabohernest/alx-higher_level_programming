@@ -21,7 +21,7 @@ This is a test module for matrix multiplication function ``matrix_mul(m_a, m_b)`
 ================================
 Import function form the module:
 ================================
->>> matrix_mul  = __import__('100-matrix_mul').matrix_mul
+>>> matrix_mul = __import__('100-matrix_mul').matrix_mul
 
 
 =========================
@@ -42,7 +42,7 @@ Empty Matrix
 
 m_a is empty
 ============
->>> m_a =[]
+>>> m_a = []
 >>> m_b = [[1, 2, 3], [4, 5, 6]]
 
 >>> matrix_mul(m_a, m_b)
@@ -52,7 +52,7 @@ ValueError: m_a can't be empty
 
 m_b is empty
 ============
->>> m_b =[]
+>>> m_b = []
 >>> m_a = [[1, 2, 3], [4, 5, 6]]
 
 >>> matrix_mul(m_a, m_b)
@@ -67,6 +67,22 @@ If num of col in m_a != num of row in m_b multiplication is not possible
 >>> ma = [[1, 2, 3]]
 
 >>> matrix_mul(ma, mb)
+Traceback (most recent call last):
+    ...
+ValueError: m_a and m_b can't be multiplied
+
+>>> m_a = [[]]
+>>> m_b = [[5, 6], [7, 8]]
+
+>>> matrix_mul(m_a, m_b)
+Traceback (most recent call last):
+    ...
+ValueError: m_a and m_b can't be multiplied
+
+>>> m_a = [[5, 6], [7, 8]]
+>>> m_b = [[]]
+
+>>> matrix_mul(m_a, m_b)
 Traceback (most recent call last):
     ...
 ValueError: m_a and m_b can't be multiplied
@@ -105,17 +121,32 @@ Traceback (most recent call last):
     ...
 TypeError: m_a must be a list
 
+>>> m_a = "Hello"
+>>> m_b = [[1, 2], [3, 4], [3, 4]]
+
+>>> matrix_mul(m_a, m_b)
+Traceback (most recent call last):
+    ...
+TypeError: m_a must be a list
+
 
 m_b is not a list
 =================
 >>> m_b = "Iscool"
 >>> m_a = [[2, 4, 6], [8, 10, 12]]
 
->> matrix_mul(m_a, m_b)
+>>> matrix_mul(m_a, m_b)
 Traceback (most recent call last):
     ...
 TypeError: m_b must be a list
 
+>>> m_a = [[1, 2], [3, 4], [3, 4]]
+>>> m_b = "School"
+
+>>> matrix_mul(m_a, m_b)
+Traceback (most recent call last):
+    ...
+TypeError: m_b must be a list
 
 m_a element is not an int or a float
 ====================================
@@ -139,6 +170,43 @@ Traceback (most recent call last):
 TypeError: m_b should contain only integers or floats
 
 
+list of integers with list of lists of numbers
+=============================================
+>>> m_a = [1, 2, 3, 4]
+>>> m_b = [[5, 6, 1], [7, 8, 9]]
+
+>>> matrix_mul(m_a, m_b)
+Traceback (most recent call last):
+    ...
+TypeError: m_a must be a list of lists
+
+>>> m_a = [[5, 6, 1], [7, 8, 9]]
+>>> m_b = [1, 2, 3, 4]
+
+>>> matrix_mul(m_a, m_b)
+Traceback (most recent call last):
+    ...
+TypeError: m_b must be a list of lists
+
+
+list of lists of non-number with list of lists of numbers
+=========================================================
+>>> m_a = [["write", "good"], ["test", "always"]]
+>>> m_b = [[5, 6], [7, 8]]
+
+>>> matrix_mul(m_a, m_b)
+Traceback (most recent call last):
+    ...
+TypeError: m_a should contain only integers or floats
+
+>>> m_a = [[5, 6], [7, 8]]
+>>> m_b = [["write", "good"], ["test", "always"]]
+
+>>> matrix_mul(m_a, m_b)
+Traceback (most recent call last):
+    ...
+TypeError: m_b should contain only integers or floats
+
 ===========
 Valid Tests
 ===========
@@ -146,3 +214,12 @@ Valid Tests
 >>> m_b = m_a
 >>> print(matrix_mul(m_a, m_b))
 [[7, 10], [15, 22]]
+
+=======================
+Test 2x3 and 3x2 matrix
+======================
+>>> m_a = [[1, 2], [3, 4], [3, 4]]
+>>> m_b = [[5, 6, 1], [7, 8, 2]]
+
+>>> print(matrix_mul(m_a, m_b))
+[[19, 22, 5], [43, 50, 11], [43, 50, 11]]
