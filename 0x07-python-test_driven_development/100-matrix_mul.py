@@ -24,15 +24,14 @@ def matrix_mul(m_a, m_b):
     # check if matrices are valid
     matrices_handler(m_a, m_b)
 
-    for a_list in m_a:
-        tmp_list = [0] * (len(a_list))
-        for idx, n in enumerate(a_list):
-            try:
-                for idp, p in enumerate(m_b[idx]):
-                    tmp_list[idp] += n * p
-            except Exception:
-                raise ValueError("m_a and m_b can't be multiplied")
-        new_matrix.append(tmp_list)
+    for row_a in m_a:
+        tmp_row = []
+        for col_b in zip(*m_b):  # Transpose m_b for easier multiplication
+            # Calculate the inner product of row_a and col_b
+            inner_product = sum(a * b for a, b in zip(row_a, col_b))
+            tmp_row.append(inner_product)
+        new_matrix.append(tmp_row)
+
     return new_matrix
 
 
@@ -65,3 +64,6 @@ def matrices_handler(m_a, m_b):
         raise TypeError("m_a should contain only integers or floats")
     if not all(isinstance(num, (int, float)) for row in m_b for num in row):
         raise TypeError("m_b should contain only integers or floats")
+
+    if len(m_a[0]) != len(m_b):
+        raise ValueError("m_a and m_b can't be multiplied")
