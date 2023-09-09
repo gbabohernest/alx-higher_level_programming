@@ -42,9 +42,9 @@ def matrices_handler(m_a, m_b):
     if not isinstance(m_b, list):
         raise TypeError("m_b must be a list")
 
-    if len(m_a) == 0:
+    if len(m_a) == 0 or m_a == [[]]:
         raise ValueError("m_a can't be empty")
-    if len(m_b) == 0:
+    if len(m_b) == 0 or m_b == [[]]:
         raise ValueError("m_b can't be empty")
 
     if not all(isinstance(row, list) for row in m_a):
