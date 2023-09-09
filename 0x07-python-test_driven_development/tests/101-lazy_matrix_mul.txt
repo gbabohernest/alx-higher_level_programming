@@ -221,8 +221,15 @@ Valid Tests
 ===========
 >>> m_a = [[1, 2],[3, 4]]
 >>> m_b = m_a
->>> print(lazy_matrix_mul(m_a, m_b))
+>>> lazy_matrix_mul(m_a, m_b)
 [[7, 10], [15, 22]]
+
+
+>>> m_a = [[1, 2]]
+>>> m_b = [[3, 4], [5, 6]]
+>>> lazy_matrix_mul(m_a, m_b)
+[[13 16]]
+
 
 =======================
 Test 2x3 and 3x2 matrix
