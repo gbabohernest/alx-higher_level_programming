@@ -77,7 +77,7 @@ ValueError: m_a and m_b can't be multiplied
 >>> matrix_mul(m_a, m_b)
 Traceback (most recent call last):
     ...
-ValueError: m_a and m_b can't be multiplied
+ValueError: m_a can't be empty
 
 >>> m_a = [[5, 6], [7, 8]]
 >>> m_b = [[]]
@@ -85,7 +85,7 @@ ValueError: m_a and m_b can't be multiplied
 >>> matrix_mul(m_a, m_b)
 Traceback (most recent call last):
     ...
-ValueError: m_a and m_b can't be multiplied
+ValueError: m_b can't be empty
 
 ===================================================
 Row in matrix m_a and m_b are are not the same size 
