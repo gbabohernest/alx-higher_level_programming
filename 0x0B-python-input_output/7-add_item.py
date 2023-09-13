@@ -4,6 +4,7 @@
    list and save them in a JSON file.
 """
 import sys
+import os
 
 save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
 load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
@@ -13,9 +14,11 @@ def add_all_args(args, filename):
     """Adds all arguments to a Python list
        and save them as a JSON file
     """
-
+    items = []
     try:
-        items = load_from_json(filename)
+        if os.path.exists(filename):
+            items = load_from_json_file(filename)
+
     except Exception:
         items = []
 
