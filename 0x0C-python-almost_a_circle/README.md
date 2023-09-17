@@ -1,5 +1,25 @@
 # 0x0C. Python - Almost a circle
 
+
+## Synopsis
+
+**This projects review the following python concepts***
+
+ - Import
+ - Exceptions
+ - Class
+ - Private attribute
+ - Getter/Setter
+ - Class method
+ - Static method
+ - Inheritance
+ - Unittest
+ - Read/Write files
+ - *args and **kwargs
+ - Serialization / Deserialization
+ - JSON
+
+
 ## Tasks
 
 
