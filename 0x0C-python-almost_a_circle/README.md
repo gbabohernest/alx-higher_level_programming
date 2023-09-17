@@ -3,7 +3,7 @@
 
 ## Synopsis
 
-**This projects review the following python concepts***
+### This project is a review of the following python concepts
 
  - Import
  - Exceptions
