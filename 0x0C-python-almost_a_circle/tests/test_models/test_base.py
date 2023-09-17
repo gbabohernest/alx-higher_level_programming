@@ -56,3 +56,8 @@ class TestBase(unittest.TestCase):
         id_tuple = (2, 3)
         b9 = Base(id_tuple)
         self.assertEqual(b9.id, id_tuple)
+
+    def test_cls_private_attribute(self):
+        b10 = Base(10)
+        with self.assertRaises(AttributeError):
+            print(b10.id.__nb_instances)
