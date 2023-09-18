@@ -104,7 +104,7 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(AttributeError):
             print(rect.__y)
 
-    # None integer value with width attribute
+    # None integer value as width input
     def test_width_as_string(self):
         """Test width with a string input"""
         with self.assertRaises(TypeError):
@@ -171,7 +171,7 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             rect = Rectangle(-3, 10)
 
-    # None integer value with height attribute
+    # None integer value as height input
     def test_height_as_string(self):
         """Test height with a string input"""
         with self.assertRaises(TypeError):
@@ -237,3 +237,141 @@ class TestRectangle(unittest.TestCase):
         """Test height with a negative input"""
         with self.assertRaises(ValueError):
             rect = Rectangle(3, -10)
+
+
+class TestRectangleXYAttributes(unittest.TestCase):
+    """Defines test cases for x and y instance attribute value"""
+
+    def setUp(self):
+        """Setup for testing x and y attributes with
+        an instance width and height attributes given
+        """
+        self.rect = Rectangle(10, 20)
+
+    def tearDown(self):
+        """Run a cleanup after each test case"""
+        del self.rect
+
+    # None integer value as x input
+    def test_x_as_string(self):
+        """Test x with a string input"""
+        with self.assertRaises(TypeError):
+            self.rect.x = "Not Valid"
+
+    def test_x_as_None(self):
+        """Test x with a None input"""
+        with self.assertRaises(TypeError):
+            self.rect.x = None
+
+    def test_x_as_inf(self):
+        """Test x with an inf input """
+        with self.assertRaises(TypeError):
+            self.rect.x = float('inf')
+
+    def test_x_as_nan(self):
+        """Test x with a nan input"""
+        with self.assertRaises(TypeError):
+            self.rect.x = float('nan')
+
+    def test_x_as_float(self):
+        """Test x with a float input"""
+        with self.assertRaises(TypeError):
+            self.rect.x = 3.2
+
+    def test_x_as_list(self):
+        """Test x with a list input"""
+        with self.assertRaises(TypeError):
+            self.rect.x = [2, 4, 6]
+
+    def test_x_as_dict(self):
+        """Test x with a dictionary input"""
+        with self.assertRaises(TypeError):
+            self.rect.x = {"name": "width", "value": 20}
+
+    def test_x_as_tuple(self):
+        """Test x with a tuple input"""
+        with self.assertRaises(TypeError):
+            self.rect.x = (2,)
+
+    def test_x_as_set(self):
+        """Test x with a set input"""
+        with self.assertRaises(TypeError):
+            self.rect.x = {2, 4, 3, 5}
+
+    def test_x_as_bool(self):
+        """Test x with a boolean input"""
+        with self.assertRaises(TypeError):
+            self.rect.x = True
+
+    def test_x_as_complex(self):
+        """Test x with a complex input"""
+        with self.assertRaises(TypeError):
+            self.rect.x = complex(5)
+
+    # Integer value < 0 as x input
+    def test_x_as_negative(self):
+        """Test x with a negative input"""
+        with self.assertRaises(ValueError):
+            self.rect.x = -3
+
+    # None integer value as y input
+    def test_y_as_string(self):
+        """Test y with a string input"""
+        with self.assertRaises(TypeError):
+            self.rect.y = "Not Valid"
+
+    def test_y_as_None(self):
+        """Test y with a None input"""
+        with self.assertRaises(TypeError):
+            self.rect.y = None
+
+    def test_y_as_inf(self):
+        """Test y with an inf input """
+        with self.assertRaises(TypeError):
+            self.rect.y = float('inf')
+
+    def test_y_as_nan(self):
+        """Test y with a nan input"""
+        with self.assertRaises(TypeError):
+            self.rect.y = float('nan')
+
+    def test_y_as_float(self):
+        """Test y with a float input"""
+        with self.assertRaises(TypeError):
+            self.rect.y = 3.2
+
+    def test_y_as_list(self):
+        """Test y with a list input"""
+        with self.assertRaises(TypeError):
+            self.rect.y = [2, 4, 6]
+
+    def test_y_as_dict(self):
+        """Test x with a dictionary input"""
+        with self.assertRaises(TypeError):
+            self.rect.y = {"name": "width", "value": 20}
+
+    def test_y_as_tuple(self):
+        """Test y with a tuple input"""
+        with self.assertRaises(TypeError):
+            self.rect.y = (2,)
+
+    def test_y_as_set(self):
+        """Test y with a set input"""
+        with self.assertRaises(TypeError):
+            self.rect.y = {2, 4, 3, 5}
+
+    def test_y_as_bool(self):
+        """Test y with a boolean input"""
+        with self.assertRaises(TypeError):
+            self.rect.y = True
+
+    def test_y_as_complex(self):
+        """Test y with a complex input"""
+        with self.assertRaises(TypeError):
+            self.rect.y = complex(5)
+
+    # Integer value < 0 as y input
+    def test_y_as_negative(self):
+        """Test y with a negative input"""
+        with self.assertRaises(ValueError):
+            self.rect.y = -3
