@@ -75,6 +75,22 @@ class Rectangle(Base):
             rect += (" " * self.x) + ("#" * self.__width) + "\n"
         print(rect, end="")
 
+    def update(self, *args):
+        """Assigns an argument to each attribute
+        Args:
+            *args - a tuple of integers to be assigned as new attribute value
+
+        1 -> id attribute
+        2 -> width attribute
+        3 -> height attribute
+        4 -> x attribute
+        5 -> y attribute
+        """
+        if args:
+            attr_names = ["id", "width", "height", "x", "y"]
+            for idx, arg in enumerate(args):
+                setattr(self, attr_names[idx], arg)
+
     @staticmethod
     def validate_attributes(attr, value):
         """Validates instance attribute."""
