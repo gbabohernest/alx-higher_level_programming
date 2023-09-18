@@ -104,6 +104,136 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(AttributeError):
             print(rect.__y)
 
-    # None integer values
+    # None integer value with width attribute
     def test_width_as_string(self):
-        rect = Rectangle("Python", 3)
+        """Test width with a string input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle("Python", 2)
+
+    def test_width_as_None(self):
+        """Test width with a None input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(None, 22)
+
+    def test_width_as_inf(self):
+        """Test width with an inf input """
+        with self.assertRaises(TypeError):
+            rect = Rectangle(float('inf'), 2)
+
+    def test_width_as_nan(self):
+        """Test width with a nan input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(float('nan'), 2)
+
+    def test_width_as_float(self):
+        """Test width with a float input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(3.2, 10)
+
+    def test_width_as_list(self):
+        """Test width with a list input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle([2, 4, 6], 10)
+
+    def test_width_as_dict(self):
+        """Test width with a dictionary input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle({"name": "width", "value": 20}, 3)
+
+    def test_width_as_tuple(self):
+        """Test width with a tuple input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle((2,), 3)
+
+    def test_width_as_set(self):
+        """Test width with a set input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle({2, 4, 3, 5}, 33)
+
+    def test_width_as_bool(self):
+        """Test width with a boolean input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(True, 2)
+
+    def test_width_as_complex(self):
+        """Test width with a complex input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(complex(5), 2)
+
+    # Integer value <= 0 as width input
+    def test_width_as_zero(self):
+        """Test width with an 0 input"""
+        with self.assertRaises(ValueError):
+            rect = Rectangle(0, 3)
+
+    def test_width_as_negative(self):
+        """Test width with a negative input"""
+        with self.assertRaises(ValueError):
+            rect = Rectangle(-3, 10)
+
+    # None integer value with height attribute
+    def test_height_as_string(self):
+        """Test height with a string input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(2, "Python")
+
+    def test_height_as_None(self):
+        """Test height with a None input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(22, None)
+
+    def test_height_as_inf(self):
+        """Test height with an inf input """
+        with self.assertRaises(TypeError):
+            rect = Rectangle(2, float('inf'))
+
+    def test_height_as_nan(self):
+        """Test height with a nan input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(2, float('nan'))
+
+    def test_height_as_float(self):
+        """Test height with a float input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(10, 3.2)
+
+    def test_height_as_list(self):
+        """Test height with a list input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(10, [10, 12, 14, 16])
+
+    def test_height_as_dict(self):
+        """Test height with a dictionary input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(3, {"name": "width", "value": 20})
+
+    def test_height_as_tuple(self):
+        """Test height with a tuple input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(3, (2,))
+
+    def test_height_as_set(self):
+        """Test height with a set input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(33, {2, 4, 3, 5})
+
+    def test_height_as_bool(self):
+        """Test height with a boolean input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(2, False)
+
+    def test_height_as_complex(self):
+        """Test height with a complex input"""
+        with self.assertRaises(TypeError):
+            rect = Rectangle(2, complex(5))
+
+    # Integer value <= 0 as height input
+    def test_height_as_zero(self):
+        """Test height with an 0 input"""
+        with self.assertRaises(ValueError):
+            rect = Rectangle(3, 0)
+
+    def test_height_as_negative(self):
+        """Test height with a negative input"""
+        with self.assertRaises(ValueError):
+            rect = Rectangle(3, -10)
