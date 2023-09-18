@@ -436,3 +436,40 @@ class TestDisplayMethod(unittest.TestCase):
                   "##########\n" +
                   "##########\n")
         self.assertEqual(output, screenshot.getvalue())
+
+
+class TestStrMethod(unittest.TestCase):
+    """Defines test cases for __str__method """
+
+    @staticmethod
+    def screenshotStdout(rect_instance):
+        """Capture / screenshot the stdout
+        and return the text printed.
+
+        Arg: Rectangle instance to print to stdout.
+        Returns: Screenshot of the text printed to the stdout
+        """
+        output_screenshot = StringIO()
+        sys.stdout = output_screenshot
+        print(rect_instance)
+        sys.stdout = sys.__stdout__
+        return output_screenshot
+
+    def test_str_method(self):
+        """Test correct print output"""
+        rect = Rectangle(10, 5, id=20)
+        screenshot = TestStrMethod.screenshotStdout(rect)
+        output = "[Rectangle] (20) 0/0 - 10/5\n"
+        self.assertEqual(output, screenshot.getvalue())
+
+    def test_str_method_with_x_y(self):
+        """Test correct print output with x and y given"""
+        rect = Rectangle(18, 12, 5, 4)
+        screenshot = TestStrMethod.screenshotStdout(rect)
+        output = "[Rectangle] ({}) 5/4 - 18/12\n".format(rect.id)
+        self.assertEqual(output, screenshot.getvalue())
+
+    def test_str_method_wth_x_y_id(self):
+        """Test correct print output with x, y, id"""
+        rect = Rectangle(2, 5, 7, 3, 22)
+        self.assertEqual("[Rectangle] (22) 7/3 - 2/5", rect.__str__())
