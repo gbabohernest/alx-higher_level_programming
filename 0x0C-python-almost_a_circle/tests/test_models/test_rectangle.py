@@ -603,3 +603,79 @@ class TestUpdateMethod(unittest.TestCase):
         self.rect.update(89, 2, 3, 4, 5, 6)
         self.rect.update(6, 5, 4, 3, 2, 89)
         self.assertEqual("[Rectangle] (6) 3/2 - 5/4", str(self.rect))
+
+    # Testing kwargs key/value arguments
+
+    # Error checks
+    def test_update_kwargs_width_height_x_y_as_string(self):
+        """Test update (width, height, x, y) key/value
+        assignments with string as values using kwargs
+        """
+        with self.assertRaises(TypeError):
+            self.rect.update(width="wrong type")
+            self.rect.update(height="invalid")
+            self.rect.update(x="wrong input!")
+            self.rect.update(y="not valid")
+
+    def test_update_kwargs_width_height_x_y_as_None(self):
+        """Test update (width, height, x, and y) key/value
+        assignments as None using kwargs
+        """
+        with self.assertRaises(TypeError):
+            self.rect.update(y=20, x=None, height=3, width=4)
+            self.rect.update(y=None, x=20, height=30, width=3)
+            self.rect.update(y=20, x=30, height=40, width=None)
+            self.rect.update(height=None, width=22, x=20, y=30)
+
+    def test_update_kwargs_width_height_x_y_as_negative(self):
+        """Test update with (width, height, x, and y)
+        key/value assignments with negative value using kwargs
+        """
+        with self.assertRaises(ValueError):
+            self.rect.update(width=10, x=-44, height=20, y=22)
+            self.rect.update(height=10, x=2, width=-3)
+            self.rect.update(height=2, width=3, y=-2)
+            self.rect.update(height=-10, x=2, y=3, width=2)
+
+    def test_update_kwargs_width_height_x_y_as_float(self):
+        """Test update (width, height, x, and y) key/value
+        assignments with float values using kwargs
+        """
+        with self.assertRaises(TypeError):
+            self.rect.update(x=2.5, y=5, height=3, width=2)
+            self.rect.update(height=10, width=2, y=1.5)
+            self.rect.update(width=3.5, x=2, height=5)
+            self.rect.update(x=10, height=2.5, width=2, y=3)
+
+    def test_update_kwargs_width_height_as_zero(self):
+        """Test update width and height key/value
+        assignments with 0 using kwargs
+        """
+        with self.assertRaises(ValueError):
+            self.rect.update(width=10, height=0)
+            self.rect.update(height=10, width=0)
+
+    # correct output tests
+    def test_update_key_value_args(self):
+        """Test update with **kwargs"""
+        self.rect.update(y=1, width=2, x=3, id=89)
+        self.assertEqual(1, self.rect.y)
+        self.assertEqual(2, self.rect.width)
+        self.assertEqual(3, self.rect.x)
+        self.assertEqual(89, self.rect.id)
+
+    def test_update_kwargs_some_wrong_keys(self):
+        self.rect.update(height=5, id=89, a=1, b=54, x=19, y=7)
+        self.assertEqual("[Rectangle] (89) 19/7 - 10/5", str(self.rect))
+
+        # with wrong keys
+        self.rect.update(a=5, b=10)
+        self.assertEqual("[Rectangle] (89) 19/7 - 10/5", str(self.rect))
+
+    def test_update_with_args_kwargs(self):
+        """Test with *args and **kwargs"""
+        self.rect.update(1000, y=1, width=2, x=3, id=89)
+        self.assertEqual(1000, self.rect.id)
+
+        self.rect.update(89, 2, height=4, y=6)
+        self.assertEqual("[Rectangle] (89) 10/10 - 2/10", str(self.rect))
