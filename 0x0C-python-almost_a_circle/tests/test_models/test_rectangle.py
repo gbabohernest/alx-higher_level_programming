@@ -21,12 +21,12 @@ class TestRectangle(unittest.TestCase):
     def test_no_args(self):
         """instance with no args"""
         with self.assertRaises(TypeError):
-            rect = Rectangle()
+            Rectangle()
 
     def test_with_arg(self):
         """instance with one arg"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(2)
+            Rectangle(2)
 
     def test_with_excess_args(self):
         """Test with more args then required"""
@@ -381,7 +381,7 @@ class TestRectangleXYAttributes(unittest.TestCase):
 
 
 class TestAreaOfRectangle(unittest.TestCase):
-    """Defines test case for public instance method area()."""
+    """Defines test cases for public instance method area()."""
 
     def test_area_with_normal_inputs(self):
         """Test public instance area method with
@@ -493,3 +493,113 @@ class TestStrMethod(unittest.TestCase):
         """Test correct print output with x, y, id"""
         rect = Rectangle(2, 5, 7, 3, 22)
         self.assertEqual("[Rectangle] (22) 7/3 - 2/5", rect.__str__())
+
+
+class TestUpdateMethod(unittest.TestCase):
+    """Defines test cases for the public
+    instance method -> update()
+    """
+
+    def setUp(self):
+        """Setup for testing width, height x, y
+        and id attributes with the update method
+        """
+        self.rect = Rectangle(10, 10, 10, 10, 10)
+
+    def tearDown(self):
+        """Run a cleanup after each test case"""
+        del self.rect
+
+    # Error checks
+    def test_update_width_height_x_y_as_negative(self):
+        """Test update with (width, height, x, and y)
+        assignments as negative value
+        """
+        with self.assertRaises(ValueError):
+            self.rect.update(10, -44)
+            self.rect.update(10, 2, -3)
+            self.rect.update(10, 2, 3, -2)
+            self.rect.update(10, 2, 3, 2, -5)
+
+    def test_update_width_height_x_y_as_float(self):
+        """Test update (width, height, x, and y)
+        assignments with float values
+        """
+        with self.assertRaises(TypeError):
+            self.rect.update(10, 2.5)
+            self.rect.update(10, 2, 1.5)
+            self.rect.update(10, 2, 5, 3.5)
+            self.rect.update(10, 2, 5, 3, 7.2)
+
+    def test_update_width_height_as_zero(self):
+        """Test update width and height assignments with 0"""
+        with self.assertRaises(ValueError):
+            self.rect.update(10, 0)
+            self.rect.update(10, 5, 0)
+
+    def test_update_width_height_x_y_as_string(self):
+        """Test update (width, height, x, and y)
+        assignments with a string
+        """
+        with self.assertRaises(TypeError):
+            self.rect.update(10, "WIDTH NOT VALID")
+            self.rect.update(10, 4, "Not valid")
+            self.rect.update(10, 4, 5, "x not valid")
+            self.rect.update(10, 4, 5, 6, "y not valid")
+
+    def test_update_width_height_x_y_as_None(self):
+        """Test update (width, height, x, and y)
+        assignments as None
+        """
+        with self.assertRaises(TypeError):
+            self.rect.update(20, None)
+            self.rect.update(20, 30, None)
+            self.rect.update(20, 30, 40, None)
+            self.rect.update(20, 30, 40, 50, None)
+
+    # Correct output checks
+    def test_update_id_as_None(self):
+        """Test update with None as id"""
+        rect = Rectangle(10, 10, 10, 10, 10)
+        rect.update(None)
+        output = "[Rectangle] ({}) 10/10 - 10/10".format(rect.id)
+        self.assertEqual(output, rect.__str__())
+
+        r = Rectangle(10, 10, 10, 10)
+        r.update(None, 2, 4, 6)
+        output = "[Rectangle] ({}) 6/10 - 2/4".format(r.id)
+        self.assertEqual(output, r.__str__())
+
+    def test_update_id(self):
+        """Test update for correct id
+        attribute assignment"""
+        self.rect.update(30)
+        self.assertEqual(30, self.rect.id)
+
+    def test_update_x_y(self):
+        """Test x, y values as >= 0"""
+        self.rect.update(1, 1, 1, 0)
+        self.assertEqual(0, self.rect.x)
+
+        self.rect.update(1, 1, 1, 1, 0)
+        self.assertEqual(0, self.rect.y)
+
+        self.rect.update(1, 1, 1, 5)
+        self.assertEqual(5, self.rect.x)
+
+        self.rect.update(2, 4, 6, 8, 10)
+        self.assertEqual(10, self.rect.y)
+
+    def test_update_with_all_args(self):
+        """Test update with all valid args"""
+        self.rect.update(22, 20, 23, 5, 60)
+        self.assertEqual("[Rectangle] (22) 5/60 - 20/23", str(self.rect))
+
+    def test_update_with_more_args(self):
+        """Test update with more than 5 args"""
+        self.rect.update(22, 20, 45, 2, 3, 15)
+        self.assertEqual("[Rectangle] (22) 2/3 - 20/45", str(self.rect))
+
+        self.rect.update(89, 2, 3, 4, 5, 6)
+        self.rect.update(6, 5, 4, 3, 2, 89)
+        self.assertEqual("[Rectangle] (6) 3/2 - 5/4", str(self.rect))
