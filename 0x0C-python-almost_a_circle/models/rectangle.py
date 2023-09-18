@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 """This module defines a Rectangle Class
-that inherits from the Base class
+that inherits from the Base class.
 """
 
 from models.base import Base
 
 
 class Rectangle(Base):
-    """Defines a Rectangle"""
+    """Defines a Rectangle."""
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        """instantiate a rectangle"""
+        """instantiate a rectangle."""
         self.width = width
         self.height = height
         self.x = x
@@ -19,52 +19,55 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """Get the private instance
-        attribute width"""
+        """Get private instance attribute width."""
         return self.__width
 
     @width.setter
     def width(self, value):
-        """Set private instance attribute width"""
+        """Set private instance attribute width."""
         self.validate_attributes("width", value)
         self.__width = value
 
     @property
     def height(self):
-        """Get private instance attribute height"""
+        """Get private instance attribute height."""
         return self.__height
 
     @height.setter
     def height(self, value):
-        """set private instance attribute height"""
+        """set private instance attribute height."""
         self.validate_attributes("height", value)
         self.__height = value
 
     @property
     def x(self):
-        """Get private instance attribute x"""
+        """Get private instance attribute x."""
         return self.__x
 
     @x.setter
     def x(self, value):
-        """Set private instance attribute x"""
+        """Set private instance attribute x."""
         self.validate_attributes("x", value)
         self.__x = value
 
     @property
     def y(self):
-        """Get private instance attribute y"""
+        """Get private instance attribute y."""
         return self.__y
 
     @y.setter
     def y(self, value):
-        """Set private instance attribute y"""
+        """Set private instance attribute y."""
         self.validate_attributes("y", value)
         self.__y = value
 
+    def area(self):
+        """Return the area of the rectangle instance."""
+        return self.__width * self.__height
+
     @staticmethod
     def validate_attributes(attr, value):
-        """Validates instance attribute"""
+        """Validates instance attribute."""
         if type(value) != int:
             raise TypeError(f"{attr} must be an integer")
         if attr == "width" or attr == "height":
