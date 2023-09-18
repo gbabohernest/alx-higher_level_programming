@@ -79,6 +79,7 @@ class Rectangle(Base):
         """Assigns an argument to each attribute
         Args:
             *args - a tuple of integers to be assigned as new attribute value
+            **kwargs - assigns key/value argument to attribute
 
         1 -> id attribute
         2 -> width attribute
@@ -86,10 +87,26 @@ class Rectangle(Base):
         4 -> x attribute
         5 -> y attribute
         """
-        if args:
+        if args and len(args) != 0:
             attr_names = ["id", "width", "height", "x", "y"]
             for idx, arg in enumerate(args):
-                setattr(self, attr_names[idx], arg)
+                if idx == 0:
+                    self.id = arg
+                elif idx == 1:
+                    self.width = arg
+                elif idx == 2:
+                    self.height = arg
+                elif idx == 3:
+                    self.x = arg
+                elif idx == 4:
+                    self.y = arg
+
+                # setattr(self, attr_names[idx], arg)
+
+        elif kwargs and len(kwargs) != 0:
+            for key, value in kwargs.items():
+                if hasattr(self, key):
+                    setattr(self, key, value)
 
     @staticmethod
     def validate_attributes(attr, value):
