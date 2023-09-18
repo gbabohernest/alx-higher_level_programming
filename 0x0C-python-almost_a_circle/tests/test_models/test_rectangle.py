@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 import unittest
+import os
 from models.base import Base
 from models.rectangle import Rectangle
+from io import StringIO
+import sys
 
 """This module defines test cases for the rectangle module"""
 
@@ -390,3 +393,46 @@ class TestAreaOfRectangle(unittest.TestCase):
         """Test public instance area method with large integer"""
         rect = Rectangle(500, 1000)
         self.assertEqual(rect.area(), 500 * 1000)
+
+
+class TestDisplayMethod(unittest.TestCase):
+    """Defines test cases for the public
+    instance method -> display()
+    """
+    @staticmethod
+    def screenshotStdout(rect_instance):
+        """Capture / screenshot the stdout
+        and return the text printed.
+
+        Arg: Rectangle instance to print to stdout.
+        Returns: Screenshot of the text printed to the stdout
+        """
+        output_screenshot = StringIO()
+        sys.stdout = output_screenshot
+        rect_instance.display()
+        sys.stdout = sys.__stdout__
+        return output_screenshot
+
+    def test_display_square_size(self):
+        """Test correct square output."""
+        rect = Rectangle(2, 3)
+        screenshot = TestDisplayMethod.screenshotStdout(rect)
+        self.assertEqual("##\n##\n##\n", screenshot.getvalue())
+
+    def test_display_square_size_2(self):
+        """Test correct square output."""
+        rect = Rectangle(3, 2)
+        screenshot = TestDisplayMethod.screenshotStdout(rect)
+        output = "###\n###\n"
+        self.assertEqual(output, screenshot.getvalue())
+
+    def test_display_square_large(self):
+        """Test correct square output."""
+        rect = Rectangle(10, 5)
+        screenshot = TestDisplayMethod.screenshotStdout(rect)
+        output = ("##########\n" +
+                  "##########\n" +
+                  "##########\n" +
+                  "##########\n" +
+                  "##########\n")
+        self.assertEqual(output, screenshot.getvalue())
