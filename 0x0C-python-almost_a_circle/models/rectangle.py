@@ -69,10 +69,11 @@ class Rectangle(Base):
         """Prints in stdout the Rectangle
         instance with the character #.
         """
+        rect = ""
+        print("\n" * self.y, end="")
         for _ in range(self.__height):
-            for _ in range(self.__width):
-                print('#', end="")
-            print()
+            rect += (" " * self.x) + ("#" * self.__width) + "\n"
+        print(rect, end="")
 
     @staticmethod
     def validate_attributes(attr, value):
