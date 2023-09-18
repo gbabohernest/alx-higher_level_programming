@@ -65,6 +65,15 @@ class Rectangle(Base):
         """Return the area of the rectangle instance."""
         return self.__width * self.__height
 
+    def display(self):
+        """Prints in stdout the Rectangle
+        instance with the character #.
+        """
+        for _ in range(self.__height):
+            for _ in range(self.__width):
+                print('#', end="")
+            print()
+
     @staticmethod
     def validate_attributes(attr, value):
         """Validates instance attribute."""
