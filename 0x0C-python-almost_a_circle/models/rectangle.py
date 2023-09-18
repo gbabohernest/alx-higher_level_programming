@@ -85,3 +85,10 @@ class Rectangle(Base):
         if attr == "x" or attr == "y":
             if value < 0:
                 raise ValueError(f"{attr} must be >= 0")
+
+    def __str__(self):
+        """Print the instance in human-readable format"""
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id,
+                                                       self.__x, self.__y,
+                                                       self.__width,
+                                                       self.__height)
