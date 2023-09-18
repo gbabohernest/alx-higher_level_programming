@@ -375,3 +375,18 @@ class TestRectangleXYAttributes(unittest.TestCase):
         """Test y with a negative input"""
         with self.assertRaises(ValueError):
             self.rect.y = -3
+
+
+class TestAreaOfRectangle(unittest.TestCase):
+    """Defines test case for public instance method area()."""
+
+    def test_area_with_normal_inputs(self):
+        """Test public instance area method with
+        integers values that are in range of small integer"""
+        rect = Rectangle(10, 5)
+        self.assertEqual(rect.area(), 50)
+
+    def test_area_with_big_integer(self):
+        """Test public instance area method with large integer"""
+        rect = Rectangle(500, 1000)
+        self.assertEqual(rect.area(), 500 * 1000)
