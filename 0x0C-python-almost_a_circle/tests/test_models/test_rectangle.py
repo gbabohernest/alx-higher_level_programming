@@ -437,6 +437,26 @@ class TestDisplayMethod(unittest.TestCase):
                   "##########\n")
         self.assertEqual(output, screenshot.getvalue())
 
+    def test_display_square_with_x(self):
+        """Test correct square output"""
+        rect = Rectangle(3, 2, 1)
+        screenshot = TestDisplayMethod.screenshotStdout(rect)
+        self.assertEqual(" ###\n ###\n", screenshot.getvalue())
+
+    def test_display_square_with_y(self):
+        """Test correct square output"""
+        rect = Rectangle(4, 5, 0, 1)
+        screenshot = TestDisplayMethod.screenshotStdout(rect)
+        output = "\n####\n####\n####\n####\n####\n"
+        self.assertEqual(output, screenshot.getvalue())
+
+    def test_display_square_with_x_y(self):
+        """Test correct square output"""
+        rect = Rectangle(2, 4, 3, 2)
+        screenshot = TestDisplayMethod.screenshotStdout(rect)
+        output = "\n\n   ##\n   ##\n   ##\n   ##\n"
+        self.assertEqual(output, screenshot.getvalue())
+
 
 class TestStrMethod(unittest.TestCase):
     """Defines test cases for __str__method """
