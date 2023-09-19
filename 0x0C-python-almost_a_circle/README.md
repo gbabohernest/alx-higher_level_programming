@@ -73,4 +73,4 @@ and to avoid duplicating the same code (by extension, same bugs)**
      a Square is a Rectangle with the same width and height
    - All **width**, **height**, **x** and **y** validation must inherit from **Rectangle** - same behavior in case of wrong data
 
-- The overloading **__str__** method should return **[Square] (<id>) <x>/<y> - <size>** - in our case, **width** or **height**
+- The overloading __str__ method should return [Square] (<id>) <x>/<y> - <size> - in our case, **width** or **height**
