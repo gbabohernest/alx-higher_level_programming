@@ -32,9 +32,20 @@ class Base:
         """Returns the JSON string representation
         of list_dictionaries
         """
-        if list_dictionaries is None or list_dictionaries == []:
+        # if list_dictionaries is None or list_dictionaries == []:
+        #     return "[]"
+        # return json.dumps(list_dictionaries)
+
+        if list_dictionaries is None:
             return "[]"
-        return json.dumps(list_dictionaries)
+
+        if not isinstance(list_dictionaries, list):
+            raise TypeError("must be a list")
+
+        if not all(isinstance(item, dict) for item in list_dictionaries):
+            raise TypeError("must be a list of dictionaries")
+
+        return json.dumps(list_dictionaries) if list_dictionaries else "[]"
 
     @classmethod
     def save_to_file(cls, list_objs):
