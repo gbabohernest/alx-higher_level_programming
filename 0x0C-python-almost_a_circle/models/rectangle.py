@@ -75,7 +75,7 @@ class Rectangle(Base):
             rect += (" " * self.x) + ("#" * self.__width) + "\n"
         print(rect, end="")
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """Assigns an argument to each attribute
         Args:
             *args - a tuple of integers to be assigned as new attribute value
@@ -87,25 +87,18 @@ class Rectangle(Base):
         4 -> x attribute
         5 -> y attribute
         """
-        if args and len(args) != 0:
-            attr_names = ["id", "width", "height", "x", "y"]
-            for idx, arg in enumerate(args):
-                if idx == 0:
-                    self.id = arg
-                elif idx == 1:
-                    self.width = arg
-                elif idx == 2:
-                    self.height = arg
-                elif idx == 3:
-                    self.x = arg
-                elif idx == 4:
-                    self.y = arg
+        attr_names = ["id", "width", "height", "x", "y"]
+        idx_to_attr = {0: 'id', 1: 'width', 2: 'height', 3: 'x', 4: 'y'}
 
-                # setattr(self, attr_names[idx], arg)
+        if args and len(args) != 0:
+
+            for idx, arg in enumerate(args):
+                if idx in idx_to_attr:
+                    setattr(self, idx_to_attr[idx], arg)
 
         elif kwargs and len(kwargs) != 0:
             for key, value in kwargs.items():
-                if hasattr(self, key):
+                if key in attr_names:
                     setattr(self, key, value)
 
     @staticmethod
