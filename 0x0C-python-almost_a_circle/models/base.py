@@ -50,10 +50,10 @@ class Base:
         content = []
 
         if list_objs is not None:
-            list_of_dict = [item.to_dictionary() for item in list_objs]
-            json_string = cls.to_json_string(list_of_dict)
-            dictionary = json.loads(json_string)
-            content.append(dictionary)
+            for idx, item in enumerate(list_objs):
+                item = item.to_dictionary()
+                dictionary = json.loads(cls.to_json_string(item))
+                content.append(dictionary)
 
         with open(file_name, mode="w") as file_pointer:
             json.dump(content, file_pointer)
