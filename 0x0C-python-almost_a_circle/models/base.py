@@ -6,9 +6,21 @@ import json
 
 
 class Base:
+    """Base class.
+    This class will be the "base" of all other classes in this project.
+    It will manage id attribute for all the classes
+
+    args:
+         @id: The id for a specific instance.
+    """
     __nb_objects = 0
 
     def __init__(self, id=None):
+        """Instantiate a new Base.
+
+        arg:
+            @id (int): The identity of the new Base.
+        """
         if id is not None:
             self.id = id
         else:
