@@ -1,4 +1,4 @@
-# Python Geometric Shapes Library
+# Python - Almost a circle Library
 
 
 **This Python package provides a collection of geometric shape models, including base classes for shapes,
