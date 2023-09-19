@@ -61,3 +61,75 @@ class TestBase(unittest.TestCase):
         b10 = Base(10)
         with self.assertRaises(AttributeError):
             print(b10.id.__nb_instances)
+
+
+class TestToJsonString(unittest.TestCase):
+    """Defines test cases for the static method to_json_string"""
+    def setUp(self):
+        """Set up each test cases for to_json_string method"""
+        self.sq = Square(4, 3, 2, 1)
+        self.sq2 = Square(10, 20, 30, 40)
+        self.rect = Rectangle(4, 3, 3, 1, 2)
+        self.rect2 = Rectangle(50, 60, 70, 80, 90)
+        self.dictionary = self.sq.to_dictionary()
+        self.dict2 = self.sq2.to_dictionary()
+        self.rect_dict = self.rect.to_dictionary()
+        self.rect_dict2 = self.rect2.to_dictionary()
+
+    def tearDown(self):
+        """Run clean up after each test cases for to_json_string method"""
+        del self.sq
+        del self.sq2
+        del self.rect
+        del self.rect2
+        del self.dictionary
+        del self.dict2
+        del self.rect_dict
+        del self.rect_dict2
+
+    def test_to_json_string_no_args(self):
+        """Test for no args"""
+        with self.assertRaises(TypeError):
+            Base.to_json_string()
+
+    def test_to_json_string_more_args(self):
+        """Test for more args"""
+        with self.assertRaises(TypeError):
+            Base.to_json_string([], 2)
+
+    def test_to_json_string_type(self):
+        """Testing the type the method will return
+        when use with the type function"""
+        json_string = Base.to_json_string([self.dictionary])
+        self.assertEqual(type(json_string), str)
+        self.assertEqual(type(Base.to_json_string([self.rect_dict])), str)
+
+    def test_to_json_string_None(self):
+        """Testing for when None is passed in as arg"""
+        json_string = Base.to_json_string(None)
+        self.assertEqual(json_string, "[]")
+
+    def test_to_json_string_value(self):
+        """Testing for correct output value"""
+        json_string = Base.to_json_string([self.dictionary])
+        data = json.loads(json_string)
+        self.assertEqual(data, [{'id': 1, 'x': 3, 'size': 4, 'y': 2}])
+
+    def test_to_json_string_empty(self):
+        """Testing for empty json string"""
+        json_string = Base.to_json_string([])
+        self.assertEqual(json_string, "[]")
+
+    def test_to_json_string_dict_len(self):
+        """Test length of one dict as input"""
+        json_string = Base.to_json_string([self.dictionary])
+        self.assertTrue(len(json_string) == 38)
+        self.assertTrue(len(Base.to_json_string([self.rect_dict])) == 52)
+
+    def test_to_json_string_len_with_two_dict(self):
+        """Test length of two dict as input"""
+        json_string = Base.to_json_string([self.dictionary, self.dict2])
+        self.assertTrue(len(json_string) == 80)
+
+        rect_string = Base.to_json_string([self.rect_dict, self.rect_dict2])
+        self.assertTrue(len(rect_string) == 109)
