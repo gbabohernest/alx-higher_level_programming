@@ -22,7 +22,7 @@
 
 ## Tests
 
- - **Directory containing test files for the following modules**:
+ - Directory containing test files for the following modules:
 
    - test_base.py
    - test_rectangle.py
@@ -31,11 +31,11 @@
 
 ## Classes
 
-**Base**
+### Base
 
-*This class will be the “base” of all other classes in this project.*
-*The goal of it is to manage id attribute in all your future classes
-and to avoid duplicating the same code (by extension, same bugs)*
+**This class will be the “base” of all other classes in this project.**
+**The goal of it is to manage id attribute in all your future classes
+and to avoid duplicating the same code (by extension, same bugs)**
 
     - Class Base:
 	- private class attribute __nb_objects = 0
@@ -45,11 +45,11 @@ and to avoid duplicating the same code (by extension, same bugs)*
           otherwise, increment __nb_objects and assign the new value to the public instance attribute id
 
 
-**Rectangle**
+### Rectangle
 
-*Represent a rectangle*.
+**Represent a rectangle**.
 
-	- **Class Rectangle inherits from Base**
+	- Class Rectangle inherits from Base
     
 	- Private instance attributes, each with its own public getter and setter:
 	- __width -> width
@@ -57,19 +57,19 @@ and to avoid duplicating the same code (by extension, same bugs)*
 	- __x -> x
 	- __y -> y
     
-	- **Class constructor: def __init__(self, width, height, x=0, y=0, id=None)**:
+	- Class constructor: def __init__(self, width, height, x=0, y=0, id=None):
         
 	- Call the super class with id - this super call with use the logic of the __init__ of the Base class
 	- Assign each argument width, height, x and y to the right attribute
 
 
-**Square**
+### Square
 
-*Represent a square*
+**Represent a square**
 
-	- **Square inherits from Rectangle**
+	- Square inherits from Rectangle
 
-	- **Class constructor: def __init__(self, size, x=0, y=0, id=None)::** 
+	- Class constructor: def __init__(self, size, x=0, y=0, id=None)::
 		- Call the super class with id, x, y, width and height - this super call 
 		will use the logic of the __init__ of the Rectangle class. The width and height
 		 must be assigned to the value of size
