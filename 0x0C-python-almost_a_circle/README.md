@@ -22,7 +22,7 @@
 
 ## Tests
 
- - Directory containing test files for the following modules:
+ - Directory containing test files for python almost a circle modules (base.py, rectangle.py, square.py):
 
    - test_base.py
    - test_rectangle.py
