@@ -679,3 +679,35 @@ class TestUpdateMethod(unittest.TestCase):
 
         self.rect.update(89, 2, height=4, y=6)
         self.assertEqual("[Rectangle] (89) 10/10 - 2/10", str(self.rect))
+
+
+class TestToDictionaryMethod(unittest.TestCase):
+    """Defines tests for the public
+       instance to_dictionary method
+    """
+
+    # Error check
+    def test_to_dict_missing_args(self):
+        """Testing with empty argument"""
+        with self.assertRaises(TypeError):
+            Rectangle()
+            Rectangle(1)
+
+    def test_to_dict_type(self):
+        """Testing the type  the method will return
+        when use with the type function"""
+        rect = Rectangle(100, 33)
+        self.assertEqual(type(rect.to_dictionary()), dict)
+
+    # Output check
+    def test_to_dict_output(self):
+        """Testing correct output of an instance"""
+        rect = Rectangle(10, 20, 6, 33, 3)
+        output = {'x': 6, 'width': 10, 'id': 3, 'height': 20, 'y': 33}
+        self.assertEqual(output, rect.to_dictionary())
+
+    def test_to_dictionary_no_object_changes(self):
+        rect1 = Rectangle(10, 2, 1, 9, 5)
+        rect2 = Rectangle(5, 9, 1, 2, 10)
+        rect2.update(**rect1.to_dictionary())
+        self.assertNotEqual(rect1, rect2)
