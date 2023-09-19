@@ -4,7 +4,7 @@ import os
 from models.base import Base
 from models.rectangle import Rectangle
 from io import StringIO
-import syss
+import sys
 
 """This module defines test cases for the rectangle module"""
 

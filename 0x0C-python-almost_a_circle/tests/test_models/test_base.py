@@ -1,6 +1,6 @@
 #!usr/bin/python3
 import unittest
-from models.base import Bases
+from models.base import Base
 
 """This module defines test cases for the base module"""
 
