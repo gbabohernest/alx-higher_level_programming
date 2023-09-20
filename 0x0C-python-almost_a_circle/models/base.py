@@ -32,20 +32,20 @@ class Base:
         """Returns the JSON string representation
         of list_dictionaries
         """
-        # if list_dictionaries is None or list_dictionaries == []:
-        #     return "[]"
-        # return json.dumps(list_dictionaries)
-
-        if list_dictionaries is None:
+        if list_dictionaries is None or list_dictionaries == []:
             return "[]"
+        return json.dumps(list_dictionaries)
 
-        if not isinstance(list_dictionaries, list):
-            raise TypeError("must be a list")
+        # if list_dictionaries is None:
+        #    return "[]"
 
-        if not all(isinstance(item, dict) for item in list_dictionaries):
-            raise TypeError("must be a list of dictionaries")
+        # if not isinstance(list_dictionaries, list):
+        #    raise TypeError("must be a list")
 
-        return json.dumps(list_dictionaries) if list_dictionaries else "[]"
+        # if not all(isinstance(item, dict) for item in list_dictionaries):
+        #    raise TypeError("must be a list of dictionaries")
+
+        # return json.dumps(list_dictionaries) if list_dictionaries else "[]"
 
     @staticmethod
     def from_json_string(json_string):
@@ -111,3 +111,24 @@ class Base:
         new_instance = class_map[cls.__name__](*attr)
         new_instance.update(**dictionary)
         return new_instance
+
+    @classmethod
+    def load_from_file(cls):
+        """Returns a list of instances.
+         Returns:
+            If file does not exist - an empty list
+            otherwise - a  list of instances
+        """
+        file_name = cls.__name__ + ".json"
+        instances = []
+
+        try:
+            with open(file_name,  mode="r", encoding="UTF8") as file_pointer:
+                dict_content = cls.from_json_string(file_pointer.read())
+                for dictionary in dict_content:
+                    instance = cls.create(**dictionary)
+                    instances.append(instance)
+        except FileNotFoundError:
+            pass
+
+        return instances
