@@ -66,7 +66,7 @@ class TestBase_init(unittest.TestCase):
             print(b10.id.__nb_instances)
 
 
-class Test_to_json_string(unittest.TestCase):
+class TestBase_to_json_string(unittest.TestCase):
     """Defines test cases for the static method to_json_string"""
 
     def test_to_json_string_no_args(self):
