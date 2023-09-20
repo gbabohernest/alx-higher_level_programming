@@ -1,11 +1,14 @@
 #!usr/bin/python3
 import unittest
+import json
 from models.base import Base
+from models.square import Square
+from models.rectangle import Rectangle
 
 """This module defines test cases for the base module"""
 
 
-class TestBase(unittest.TestCase):
+class TestBase_init(unittest.TestCase):
     """Defines test cases for Base class"""
 
     def test_no_id(self):
@@ -63,7 +66,7 @@ class TestBase(unittest.TestCase):
             print(b10.id.__nb_instances)
 
 
-class TestToJsonString(unittest.TestCase):
+class Test_to_json_string(unittest.TestCase):
     """Defines test cases for the static method to_json_string"""
 
     def test_to_json_string_no_args(self):

@@ -9,7 +9,7 @@ import sys
 """This module defines test cases for the rectangle module"""
 
 
-class TestRectangle(unittest.TestCase):
+class TestRectangle_init(unittest.TestCase):
     """Test cases for rectangle instance"""
 
     # Test Rectangle for empty, less, more args
@@ -242,7 +242,7 @@ class TestRectangle(unittest.TestCase):
             rect = Rectangle(3, -10)
 
 
-class TestRectangleXYAttributes(unittest.TestCase):
+class TestRectangle_validate_attributes(unittest.TestCase):
     """Defines test cases for x and y instance attribute value"""
 
     def setUp(self):
@@ -380,7 +380,7 @@ class TestRectangleXYAttributes(unittest.TestCase):
             self.rect.y = -3
 
 
-class TestAreaOfRectangle(unittest.TestCase):
+class TestRectangle_area(unittest.TestCase):
     """Defines test cases for public instance method area()."""
 
     def test_area_with_normal_inputs(self):
@@ -395,7 +395,7 @@ class TestAreaOfRectangle(unittest.TestCase):
         self.assertEqual(rect.area(), 500 * 1000)
 
 
-class TestDisplayMethod(unittest.TestCase):
+class TestRectangle_display(unittest.TestCase):
     """Defines test cases for the public
     instance method -> display()
     """
@@ -416,20 +416,20 @@ class TestDisplayMethod(unittest.TestCase):
     def test_display_square_size(self):
         """Test correct square output."""
         rect = Rectangle(2, 3)
-        screenshot = TestDisplayMethod.screenshotStdout(rect)
+        screenshot = TestRectangle_display.screenshotStdout(rect)
         self.assertEqual("##\n##\n##\n", screenshot.getvalue())
 
     def test_display_square_size_2(self):
         """Test correct square output."""
         rect = Rectangle(3, 2)
-        screenshot = TestDisplayMethod.screenshotStdout(rect)
+        screenshot = TestRectangle_display.screenshotStdout(rect)
         output = "###\n###\n"
         self.assertEqual(output, screenshot.getvalue())
 
     def test_display_square_large(self):
         """Test correct square output."""
         rect = Rectangle(10, 5)
-        screenshot = TestDisplayMethod.screenshotStdout(rect)
+        screenshot = TestRectangle_display.screenshotStdout(rect)
         output = ("##########\n" +
                   "##########\n" +
                   "##########\n" +
@@ -440,25 +440,25 @@ class TestDisplayMethod(unittest.TestCase):
     def test_display_square_with_x(self):
         """Test correct square output"""
         rect = Rectangle(3, 2, 1)
-        screenshot = TestDisplayMethod.screenshotStdout(rect)
+        screenshot = TestRectangle_display.screenshotStdout(rect)
         self.assertEqual(" ###\n ###\n", screenshot.getvalue())
 
     def test_display_square_with_y(self):
         """Test correct square output"""
         rect = Rectangle(4, 5, 0, 1)
-        screenshot = TestDisplayMethod.screenshotStdout(rect)
+        screenshot = TestRectangle_display.screenshotStdout(rect)
         output = "\n####\n####\n####\n####\n####\n"
         self.assertEqual(output, screenshot.getvalue())
 
     def test_display_square_with_x_y(self):
         """Test correct square output"""
         rect = Rectangle(2, 4, 3, 2)
-        screenshot = TestDisplayMethod.screenshotStdout(rect)
+        screenshot = TestRectangle_display.screenshotStdout(rect)
         output = "\n\n   ##\n   ##\n   ##\n   ##\n"
         self.assertEqual(output, screenshot.getvalue())
 
 
-class TestStrMethod(unittest.TestCase):
+class TestRectangle_str(unittest.TestCase):
     """Defines test cases for __str__method """
 
     @staticmethod
@@ -478,14 +478,14 @@ class TestStrMethod(unittest.TestCase):
     def test_str_method(self):
         """Test correct print output"""
         rect = Rectangle(10, 5, id=20)
-        screenshot = TestStrMethod.screenshotStdout(rect)
+        screenshot = TestRectangle_str.screenshotStdout(rect)
         output = "[Rectangle] (20) 0/0 - 10/5\n"
         self.assertEqual(output, screenshot.getvalue())
 
     def test_str_method_with_x_y(self):
         """Test correct print output with x and y given"""
         rect = Rectangle(18, 12, 5, 4)
-        screenshot = TestStrMethod.screenshotStdout(rect)
+        screenshot = TestRectangle_str.screenshotStdout(rect)
         output = "[Rectangle] ({}) 5/4 - 18/12\n".format(rect.id)
         self.assertEqual(output, screenshot.getvalue())
 
@@ -495,7 +495,7 @@ class TestStrMethod(unittest.TestCase):
         self.assertEqual("[Rectangle] (22) 7/3 - 2/5", rect.__str__())
 
 
-class TestUpdateMethod(unittest.TestCase):
+class TestRectangle_update(unittest.TestCase):
     """Defines test cases for the public
     instance method -> update()
     """
@@ -681,7 +681,7 @@ class TestUpdateMethod(unittest.TestCase):
         self.assertEqual("[Rectangle] (89) 10/10 - 2/10", str(self.rect))
 
 
-class TestToDictionaryMethod(unittest.TestCase):
+class TestRectangle_to_dictionary(unittest.TestCase):
     """Defines tests for the public
        instance to_dictionary method
     """
