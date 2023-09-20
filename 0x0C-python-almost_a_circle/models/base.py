@@ -84,3 +84,30 @@ class Base:
 
         with open(file_name, mode="w") as file_pointer:
             json.dump(content, file_pointer)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """Returns an instance with all attributes already set.
+
+        arg:
+            **dictionary: can be thought as a double
+                          pointer to a dictionary
+        """
+        from models.rectangle import Rectangle
+        from models.square import Square
+
+        class_map = {
+            "Rectangle": Rectangle,
+            "Square": Square
+        }
+        if not dictionary:
+            raise ValueError("Dictionary cannot be empty")
+
+        if cls.__name__ not in class_map:
+            raise ValueError("Invalid class name")
+
+        num_of_attr = 2 if cls.__name__ == "Rectangle" else 1
+        attr = [1] * num_of_attr
+        new_instance = class_map[cls.__name__](*attr)
+        new_instance.update(**dictionary)
+        return new_instance
