@@ -61,3 +61,83 @@ class TestBase(unittest.TestCase):
         b10 = Base(10)
         with self.assertRaises(AttributeError):
             print(b10.id.__nb_instances)
+
+
+class TestToJsonString(unittest.TestCase):
+    """Defines test cases for the static method to_json_string"""
+
+    def test_to_json_string_no_args(self):
+        """Test for no args"""
+        with self.assertRaises(TypeError):
+            Base.to_json_string()
+
+    def test_to_json_string_more_args(self):
+        """Test for more args"""
+        with self.assertRaises(TypeError):
+            Base.to_json_string([], 2)
+
+    def test_to_json_string_type(self):
+        """Testing the type the method will return
+        when use with the type function"""
+        sq = Square(4, 3, 2, 1)
+        dictionary = sq.to_dictionary()
+        json_string = Base.to_json_string([dictionary])
+        self.assertEqual(type(json_string), str)
+
+        rect = Rectangle(4, 3, 3, 1, 2)
+        rect_dict = rect.to_dictionary()
+        json_string = Base.to_json_string([rect_dict])
+        self.assertEqual(type(json_string), str)
+
+    def test_to_json_string_None(self):
+        """Testing for when None is passed in as arg"""
+        json_string = Base.to_json_string(None)
+        self.assertEqual(json_string, "[]")
+
+    def test_to_json_string_rectangle_value(self):
+        """Testing for correct output value"""
+        rect = Rectangle(10, 7, 2, 8, 1)
+        dictionary = rect.to_dictionary()
+        json_string = Base.to_json_string([dictionary])
+        data = json.loads(json_string)
+        self.assertEqual(data, [{'x': 2, 'width': 10, 'id': 1,
+                                'height': 7, 'y': 8}])
+
+    def test_to_json_string_value(self):
+        """Testing for correct output value"""
+        sq = Square(4, 3, 2, 1)
+        dictionary = sq.to_dictionary()
+        json_string = Base.to_json_string([dictionary])
+        data = json.loads(json_string)
+        self.assertEqual(data, [{'id': 1, 'x': 3, 'size': 4, 'y': 2}])
+
+    def test_to_json_string_empty_list(self):
+        """Testing for empty json string"""
+        json_string = Base.to_json_string([])
+        self.assertEqual(json_string, "[]")
+
+    def test_to_json_string_dict_len(self):
+        """Test length of one dict as input"""
+        sq = Square(4, 3, 2, 1)
+        sq_dict = sq.to_dictionary()
+        json_string = Base.to_json_string([sq_dict])
+        self.assertTrue(len(json_string) == 38)
+
+        rect = Rectangle(4, 3, 3, 1, 2)
+        rect_dict = rect.to_dictionary()
+        json_string = Base.to_json_string([rect_dict])
+        self.assertTrue(len(json_string) == 52)
+
+    def test_to_json_square_len_with_two_dict(self):
+        """Test length of two square dict as input"""
+        sq = Square(4, 3, 2, 1)
+        sq2 = Square(10, 20, 30, 40)
+        sq_dict = [sq.to_dictionary(), sq2.to_dictionary()]
+        self.assertTrue(len(Base.to_json_string(sq_dict)) == 80)
+
+    def test_to_json_rectangle_len_with_two_dict(self):
+        """Test length of two rectangle dict as input"""
+        rect = Rectangle(4, 3, 3, 1, 2)
+        rect2 = Rectangle(50, 60, 70, 80, 90)
+        rect_dict = [rect.to_dictionary(), rect2.to_dictionary()]
+        self.assertTrue(len(Base.to_json_string(rect_dict)) == 109)
