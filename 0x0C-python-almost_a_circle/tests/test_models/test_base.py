@@ -144,3 +144,86 @@ class TestBase_to_json_string(unittest.TestCase):
         rect2 = Rectangle(50, 60, 70, 80, 90)
         rect_dict = [rect.to_dictionary(), rect2.to_dictionary()]
         self.assertTrue(len(Base.to_json_string(rect_dict)) == 109)
+
+
+class TestBase_from_json_string(unittest.TestCase):
+    """Defines test cases for the method from_json_string"""
+
+    def test_from_json_string_return_type(self):
+        """check method return type"""
+        list_input = [{"id": 89, "width": 10, "height": 4}]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(list, type(list_output))
+
+    def test_from_json_string_success(self):
+        """Testing that the json string gets converted into a list"""
+        list_input = [
+            {'id': 2089, 'width': 10, 'height': 4},
+            {'id': 2712, 'width': 1, 'height': 7}]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        s1 = {'id': 2089, 'width': 10, 'height': 4}
+        s2 = {'height': 7, 'id': 2712, 'width': 1}
+        self.assertEqual(list_input[0], s1)
+        self.assertEqual(list_input[1], s2)
+
+    def test_from_json_string_one_rect(self):
+        list_input = [{"id": 89, "width": 10, "height": 4, "x": 7}]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(list_input, list_output)
+
+    def test_from_json_string_type(self):
+        """Testing the returned type of the method"""
+        list_input = [
+            {'id': 2089, 'width': 10, 'height': 4},
+            {'id': 2712, 'width': 1, 'height': 7}]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(type(list_output), list)
+
+    def test_from_json_string_two_rect(self):
+        """Test if two rectangle are equal"""
+        list_input = [
+            {"id": 89, "width": 10, "height": 4, "x": 7, "y": 8},
+            {"id": 98, "width": 5, "height": 2, "x": 1, "y": 3},
+        ]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(list_input, list_output)
+
+    def test_from_json_string_one_sq(self):
+        """Test square if its equal to what the method return"""
+        list_input = [{"id": 89, "size": 10, "height": 4}]
+        json_list_input = Square.to_json_string(list_input)
+        list_output = Square.from_json_string(json_list_input)
+        self.assertEqual(list_input, list_output)
+
+    def test_from_json_string_two_sq(self):
+        """Test for comparing two squares """
+        list_input = [
+            {"id": 89, "size": 10, "height": 4},
+            {"id": 7, "size": 1, "height": 7}
+        ]
+        json_list_input = Square.to_json_string(list_input)
+        list_output = Square.from_json_string(json_list_input)
+        self.assertEqual(list_input, list_output)
+
+    def test_from_json_string_None(self):
+        """check for none"""
+        self.assertEqual([], Base.from_json_string(None))
+
+    def test_from_json_string_empty_list(self):
+        """Test for empty list"""
+        self.assertEqual([], Base.from_json_string("[]"))
+
+    def test_from_json_string_no_args(self):
+        """Test no arg error"""
+        with self.assertRaises(TypeError):
+            Base.from_json_string()
+
+    def test_from_json_string_more_than_one_arg(self):
+        """check for more than one args error"""
+        with self.assertRaises(TypeError):
+            Base.from_json_string([], 1)
