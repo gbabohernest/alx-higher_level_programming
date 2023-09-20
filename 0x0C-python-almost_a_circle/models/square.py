@@ -40,10 +40,9 @@ class Square(Rectangle):
                            as new attribute value
                    **kwargs - assigns key/value argument to attribute
         1 -> id attribute
-        2 -> width attribute
-        3 -> height attribute
-        4 -> x attribute
-        5 -> y attribute
+        2 -> size attribute
+        3 -> x attribute
+        4 -> y attribute
         """
         attr_names = ["id", "size", "x", "y"]
         idx_to_attr = {0: 'id', 1: 'size', 2: 'x', 3: 'y'}
@@ -60,9 +59,10 @@ class Square(Rectangle):
 
     def to_dictionary(self):
         """Returns the dictionary representation of a Square"""
-        return {
+        obj_dict {
             "id": self.id,
+            "size": self.size,
             "x": self.x,
-            "size": self.width,
             "y": self.y,
         }
+        return obj_dict

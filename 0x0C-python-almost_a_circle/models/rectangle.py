@@ -15,11 +15,11 @@ class Rectangle(Base):
 
     def __init__(self, width, height, x=0, y=0, id=None):
         """instantiate a rectangle."""
-        super().__init__(id)
         self.width = width
         self.height = height
         self.x = x
         self.y = y
+        super().__init__(id)
 
     @property
     def width(self):
@@ -133,10 +133,11 @@ class Rectangle(Base):
         #     "height": getattr(self, "height"),
         #     "width": getattr(self, "width"),
         # }
-        return {
+        obj_dict = {
             "x": self.x,
             "width": self.width,
             "id": self.id,
             "height": self.height,
             "y": self.y,
         }
+        return obj_dict
