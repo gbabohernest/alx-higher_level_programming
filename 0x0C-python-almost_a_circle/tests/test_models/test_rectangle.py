@@ -259,7 +259,7 @@ class TestRectangle_validate_attributes(unittest.TestCase):
     def test_x_as_string(self):
         """Test x with a string input"""
         with self.assertRaises(TypeError):
-            self.rect.x = "Not Valid"
+            rect = Rectangle(1, 2, "3")
 
     def test_x_as_None(self):
         """Test x with a None input"""
@@ -315,13 +315,13 @@ class TestRectangle_validate_attributes(unittest.TestCase):
     def test_x_as_negative(self):
         """Test x with a negative input"""
         with self.assertRaises(ValueError):
-            self.rect.x = -3
+            rect = Rectangle(1, 2, -3)
 
     # None integer value as y input
     def test_y_as_string(self):
         """Test y with a string input"""
         with self.assertRaises(TypeError):
-            self.rect.y = "Not Valid"
+            rect = Rectangle(1, 2, 3, "4")
 
     def test_y_as_None(self):
         """Test y with a None input"""
@@ -377,7 +377,7 @@ class TestRectangle_validate_attributes(unittest.TestCase):
     def test_y_as_negative(self):
         """Test y with a negative input"""
         with self.assertRaises(ValueError):
-            self.rect.y = -3
+            rect = Rectangle(1, 2, 3, -4)
 
 
 class TestRectangle_area(unittest.TestCase):
