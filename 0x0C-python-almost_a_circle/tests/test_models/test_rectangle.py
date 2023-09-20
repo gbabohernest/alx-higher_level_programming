@@ -245,16 +245,6 @@ class TestRectangle_init(unittest.TestCase):
 class TestRectangle_validate_attributes(unittest.TestCase):
     """Defines test cases for x and y instance attribute value"""
 
-    def setUp(self):
-        """Setup for testing x and y attributes with
-        an instance width and height attributes given
-        """
-        self.rect = Rectangle(10, 20)
-
-    def tearDown(self):
-        """Run a cleanup after each test case"""
-        del self.rect
-
     # None integer value as x input
     def test_x_as_string(self):
         """Test x with a string input"""
@@ -264,52 +254,57 @@ class TestRectangle_validate_attributes(unittest.TestCase):
     def test_x_as_None(self):
         """Test x with a None input"""
         with self.assertRaises(TypeError):
-            self.rect.x = None
+            rect = Rectangle(1, 2, None)
 
     def test_x_as_inf(self):
         """Test x with an inf input """
+        rect = Rectangle(1, 2)
         with self.assertRaises(TypeError):
-            self.rect.x = float('inf')
+            rect.x = float('inf')
 
     def test_x_as_nan(self):
         """Test x with a nan input"""
+        rect = Rectangle(1, 2)
         with self.assertRaises(TypeError):
-            self.rect.x = float('nan')
+            rect.x = float('nan')
 
     def test_x_as_float(self):
         """Test x with a float input"""
         with self.assertRaises(TypeError):
-            self.rect.x = 3.2
+            rect = Rectangle(1, 2, 3.2)
 
     def test_x_as_list(self):
         """Test x with a list input"""
         with self.assertRaises(TypeError):
-            self.rect.x = [2, 4, 6]
+            rect = Rectangle(1, 2, [2, 4, 6])
 
     def test_x_as_dict(self):
         """Test x with a dictionary input"""
+        rect = Rectangle(1, 2)
         with self.assertRaises(TypeError):
-            self.rect.x = {"name": "width", "value": 20}
+            rect.x = {"name": "width", "value": 20}
 
     def test_x_as_tuple(self):
         """Test x with a tuple input"""
         with self.assertRaises(TypeError):
-            self.rect.x = (2,)
+            rect = Rectangle(1, 2, (2,))
 
     def test_x_as_set(self):
         """Test x with a set input"""
+        rect = Rectangle(1, 2)
         with self.assertRaises(TypeError):
-            self.rect.x = {2, 4, 3, 5}
+            rect.x = {2, 4, 3, 5}
 
     def test_x_as_bool(self):
         """Test x with a boolean input"""
         with self.assertRaises(TypeError):
-            self.rect.x = True
+            rect = Rectangle(1, 2, True)
 
     def test_x_as_complex(self):
         """Test x with a complex input"""
+        rect = Rectangle(1, 2)
         with self.assertRaises(TypeError):
-            self.rect.x = complex(5)
+            rect.x = complex(5)
 
     # Integer value < 0 as x input
     def test_x_as_negative(self):
@@ -326,52 +321,58 @@ class TestRectangle_validate_attributes(unittest.TestCase):
     def test_y_as_None(self):
         """Test y with a None input"""
         with self.assertRaises(TypeError):
-            self.rect.y = None
+            rect = Rectangle(1, 2, 3, None)
 
     def test_y_as_inf(self):
         """Test y with an inf input """
+        rect = Rectangle(1, 2, 3)
         with self.assertRaises(TypeError):
-            self.rect.y = float('inf')
+            rect.y = float('inf')
 
     def test_y_as_nan(self):
         """Test y with a nan input"""
+        rect = Rectangle(1, 2, 3)
         with self.assertRaises(TypeError):
-            self.rect.y = float('nan')
+            rect.y = float('nan')
 
     def test_y_as_float(self):
         """Test y with a float input"""
         with self.assertRaises(TypeError):
-            self.rect.y = 3.2
+            rect = Rectangle(1, 2, 3, 3.2)
 
     def test_y_as_list(self):
         """Test y with a list input"""
+        rect = Rectangle(1, 2, 3)
         with self.assertRaises(TypeError):
-            self.rect.y = [2, 4, 6]
+            rect.y = [2, 4, 6]
 
     def test_y_as_dict(self):
         """Test x with a dictionary input"""
+        rect = Rectangle(1, 2, 3)
         with self.assertRaises(TypeError):
-            self.rect.y = {"name": "width", "value": 20}
+            rect.y = {"name": "width", "value": 20}
 
     def test_y_as_tuple(self):
         """Test y with a tuple input"""
         with self.assertRaises(TypeError):
-            self.rect.y = (2,)
+            rect = Rectangle(1, 2, 3, (2,))
 
     def test_y_as_set(self):
         """Test y with a set input"""
+        rect = Rectangle(1, 2, 3)
         with self.assertRaises(TypeError):
-            self.rect.y = {2, 4, 3, 5}
+            rect.y = {2, 4, 3, 5}
 
     def test_y_as_bool(self):
         """Test y with a boolean input"""
         with self.assertRaises(TypeError):
-            self.rect.y = True
+            rect = Rectangle(1, 2, 3, True)
 
     def test_y_as_complex(self):
         """Test y with a complex input"""
+        rect = Rectangle(1, 2, 3)
         with self.assertRaises(TypeError):
-            self.rect.y = complex(5)
+            rect.y = complex(5)
 
     # Integer value < 0 as y input
     def test_y_as_negative(self):
