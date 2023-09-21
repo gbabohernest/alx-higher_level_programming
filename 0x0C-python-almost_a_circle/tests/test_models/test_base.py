@@ -289,3 +289,124 @@ class TestBase_from_json_string(unittest.TestCase):
         """check for more than one args error"""
         with self.assertRaises(TypeError):
             Base.from_json_string([], 1)
+
+
+class TestBase_load_from_file(unittest.TestCase):
+    """Defines test cases for the class method load_from_a_file"""
+
+    @classmethod
+    def tearDown(self):
+        """Delete any created files."""
+        try:
+            os.remove("Rectangle.json")
+        except IOError:
+            pass
+        try:
+            os.remove("Square.json")
+        except IOError:
+            pass
+
+    def test_load_from_file_same_y(self):
+        """Test that an object was created from the
+           list and has the same y
+        """
+        rect1 = Rectangle(10, 7, 2, 8)
+        rect_input_list = [rect1]
+
+        Rectangle.save_to_file(rect_input_list)
+        rect_input_list = Rectangle.load_from_file()
+        self.assertEqual(rect1.y, rect_input_list[0].y)
+
+    def test_load_from_file_same_height(self):
+        """Test that an object was created from the
+            list and has the same height
+        """
+        rect1 = Rectangle(10, 7, 2, 8)
+        rect_input_list = [rect1]
+
+        Rectangle.save_to_file(rect_input_list)
+        rect_input_list = Rectangle.load_from_file()
+        self.assertEqual(rect1.height, rect_input_list[0].height)
+
+    def test_load_from_file_first_square(self):
+        sq1 = Square(5, 1, 3, 3)
+        sq2 = Square(9, 5, 2, 3)
+        Square.save_to_file([sq1, sq2])
+        sq_output_list = Square.load_from_file()
+        self.assertEqual(str(sq1), str(sq_output_list[0]))
+
+    def test_load_from_file_second_square(self):
+        sq1 = Square(5, 1, 3, 3)
+        sq2 = Square(9, 5, 2, 3)
+        Square.save_to_file([sq1, sq2])
+        sq_output_list = Square.load_from_file()
+        self.assertEqual(str(sq2), str(sq_output_list[1]))
+
+    def test_load_from_file_no_file(self):
+        output = Square.load_from_file()
+        self.assertEqual([], output)
+
+    def test_load_from_file_more_than_one_arg(self):
+        with self.assertRaises(TypeError):
+            Base.load_from_file([], 1)
+
+    def test_load_from_file_not_the_same(self):
+        """Test that an object was created from the
+            list but has a different address.
+        """
+        rect1 = Rectangle(10, 7, 2, 8)
+        rect_input_list = [rect1]
+
+        Rectangle.save_to_file(rect_input_list)
+        rect_input_list = Rectangle.load_from_file()
+        self.assertNotEqual(id(rect1), id(rect_input_list[0]))
+
+    def test_load_from_file_square_types(self):
+        s1 = Square(5, 1, 3, 3)
+        s2 = Square(9, 5, 2, 3)
+        Square.save_to_file([s1, s2])
+        output = Square.load_from_file()
+        self.assertTrue(all(type(obj) == Square for obj in output))
+
+    def test_load_from_file_same_width(self):
+        """Test that an object was created from the
+            list and has the same width
+        """
+        rect1 = Rectangle(10, 7, 2, 8)
+        rect_input_list = [rect1]
+
+        Rectangle.save_to_file(rect_input_list)
+        rect_input_list = Rectangle.load_from_file()
+        self.assertEqual(rect1.width, rect_input_list[0].width)
+
+    def test_load_from_file_same_x(self):
+        """Test that an object was created from the
+            list and has the same x
+        """
+        rect1 = Rectangle(10, 7, 2, 8)
+        rect_input_list = [rect1]
+
+        Rectangle.save_to_file(rect_input_list)
+        rect_input_list = Rectangle.load_from_file()
+        self.assertEqual(rect1.x, rect_input_list[0].x)
+
+    def test_load_from_file_first_rectangle(self):
+        rect1 = Rectangle(10, 7, 2, 8, 1)
+        rect2 = Rectangle(2, 4, 5, 6, 2)
+        Rectangle.save_to_file([rect1, rect2])
+        rect_output_list = Rectangle.load_from_file()
+        self.assertEqual(str(rect1), str(rect_output_list[0]))
+
+    def test_load_from_file_second_rectangle(self):
+        rect1 = Rectangle(10, 7, 2, 8, 1)
+        rect2 = Rectangle(2, 4, 5, 6, 2)
+        Rectangle.save_to_file([rect1, rect2])
+        rect_output_list = Rectangle.load_from_file()
+        self.assertEqual(str(rect2), str(rect_output_list[1]))
+
+    def test_load_from_file_rectangle_types(self):
+        rect1 = Rectangle(10, 7, 2, 8, 1)
+        rect2 = Rectangle(2, 4, 5, 6, 2)
+        Rectangle.save_to_file([rect1, rect2])
+        output = Rectangle.load_from_file()
+        self.assertTrue(all(type(obj) == Rectangle for obj in output))
