@@ -175,7 +175,7 @@ class TestRectangle_init(unittest.TestCase):
         with self.assertRaises(ValueError):
             rect = Rectangle(-3, 10)
 
-    # None integer value as height input
+    # Non-integer value as height input
     def test_height_as_string(self):
         """Test height with a string input"""
         with self.assertRaises(TypeError):
