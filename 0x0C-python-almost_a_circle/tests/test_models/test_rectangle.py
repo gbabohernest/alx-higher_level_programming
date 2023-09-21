@@ -497,50 +497,6 @@ class TestRectangle_str(unittest.TestCase):
         self.assertEqual("[Rectangle] (22) 7/3 - 2/5", rect.__str__())
 
 
-class TestSquare_str(unittest.TestCase):
-    """Defines test cases for __str__method in square"""
-
-    @staticmethod
-    def screenshotStdout(rect_instance):
-        """Capture / screenshot the stdout
-        and return the text printed.
-
-        Arg: Square instance to print to stdout.
-        Returns: Screenshot of the text printed to the stdout
-        """
-        output_screenshot = StringIO()
-        sys.stdout = output_screenshot
-        print(rect_instance)
-        sys.stdout = sys.__stdout__
-        return output_screenshot
-
-    def test_str_method(self):
-        """Test correct print output"""
-        sq = Square(10, 5, id=20)
-        screenshot = TestSquare_str.screenshotStdout(sq)
-        output = "[Square] (20) 5/0 - 10\n"
-        self.assertEqual(output, screenshot.getvalue())
-
-    def test_str_method_with_x_y(self):
-        """Test correct print output with x and y given"""
-        sq = Square(18, 12, 5)
-        screenshot = TestSquare_str.screenshotStdout(sq)
-        output = "[Square] ({}) 12/5 - 18\n".format(sq.id)
-        self.assertEqual(output, screenshot.getvalue())
-
-    def test_str_method_wth_x_y_id(self):
-        """Test correct print output with x, y, id"""
-        sq = Square(2, 5, 7, 3)
-        self.assertEqual("[Square] (3) 5/7 - 2", sq.__str__())
-
-    def test_str_method_with_size(self):
-        """Test with size only"""
-        sq = Square(5)
-        screenshot = TestSquare_str.screenshotStdout(sq)
-        output = "[Square] ({}) 0/0 - 5\n".format(sq.id)
-        self.assertEqual(output, screenshot.getvalue())
-
-
 class TestRectangle_update(unittest.TestCase):
     """Defines test cases for the public
     instance method -> update()
