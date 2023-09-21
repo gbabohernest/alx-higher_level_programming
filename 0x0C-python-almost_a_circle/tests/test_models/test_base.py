@@ -1,4 +1,5 @@
 #!usr/bin/python3
+import os
 import unittest
 import json
 from models.base import Base
@@ -64,6 +65,127 @@ class TestBase_init(unittest.TestCase):
         b10 = Base(10)
         with self.assertRaises(AttributeError):
             print(b10.id.__nb_instances)
+
+
+class TestBase_save_to_file(unittest.TestCase):
+    """Tests for the class method save_to_file"""
+
+    @classmethod
+    def tearDown(cls):
+        """Delete any created files."""
+        try:
+            os.remove("Rectangle.json")
+        except IOError:
+            pass
+        try:
+            os.remove("Square.json")
+        except IOError:
+            pass
+        try:
+            os.remove("Base.json")
+        except IOError:
+            pass
+
+    def test_save_to_file_into_json(self):
+        """Test saving into json format"""
+        rect = Rectangle(5, 10, 0, 0, 346)
+        Rectangle.save_to_file([rect])
+
+        with open("Rectangle.json", "r") as file:
+            content = file.read()
+        list_dict = [{"x": 0, "y": 0, "id": 346, "height": 10, "width": 5}]
+        self.assertEqual(list_dict, json.loads(content))
+
+    def test_save_to_file_one_rectangle(self):
+        rect = Rectangle(10, 7, 2, 8, 5)
+        Rectangle.save_to_file([rect])
+
+        with open("Rectangle.json", "r") as file:
+            self.assertTrue(len(file.read()) == 53)
+
+    def test_save_to_file_two_rectangles(self):
+        rect1 = Rectangle(10, 7, 2, 8, 5)
+        rect2 = Rectangle(2, 4, 1, 2, 3)
+        Rectangle.save_to_file([rect1, rect2])
+
+        with open("Rectangle.json", "r") as file:
+            self.assertTrue(len(file.read()) == 105)
+
+    def test_save_to_file_one_square(self):
+        sq = Square(10, 7, 2, 8)
+        Square.save_to_file([sq])
+
+        with open("Square.json", "r") as file:
+            self.assertTrue(len(file.read()) == 39)
+
+    def test_save_to_file_None(self):
+        """Testing saving a file into
+            json format sending None
+        """
+        rect = Rectangle(5, 10, 0, 0, 346)
+        Rectangle.save_to_file(None)
+
+        with open("Rectangle.json", "r") as file:
+            content = file.read()
+        self.assertEqual("[]", content)
+
+    def test_save_to_file_two_squares(self):
+        sq1 = Square(10, 7, 2, 8)
+        sq2 = Square(8, 1, 2, 3)
+        Square.save_to_file([sq1, sq2])
+
+        with open("Square.json", "r") as file:
+            self.assertTrue(len(file.read()) == 77)
+
+    def test_save_to_file_cls_name_for_filename(self):
+        sq = Square(10, 7, 2, 8)
+        Base.save_to_file([sq])
+
+        with open("Base.json", "r") as file:
+            self.assertTrue(len(file.read()) == 39)
+
+    def test_save_to_file_overwrite(self):
+        sq = Square(9, 2, 39, 2)
+        Square.save_to_file([sq])
+        sq = Square(10, 7, 2, 8)
+        Square.save_to_file([sq])
+
+        with open("Square.json", "r") as file:
+            self.assertTrue(len(file.read()) == 39)
+
+    def test_save_to_file_None_sq(self):
+        Square.save_to_file(None)
+        with open("Square.json", "r") as file:
+            self.assertEqual("[]", file.read())
+
+    def test_save_to_file_empty_list(self):
+        Square.save_to_file([])
+        with open("Square.json", "r") as f:
+            self.assertEqual("[]", f.read())
+
+    def test_save_to_file_no_args(self):
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file()
+
+    def test_save_to_file_more_than_one_arg(self):
+        with self.assertRaises(TypeError):
+            Square.save_to_file([], 1)
+
+    def test_save_to_file_type(self):
+        """Testing saving a file into
+           json format sending None
+        """
+        rect = Rectangle(5, 10, 0, 0, 346)
+        Rectangle.save_to_file(None)
+
+        with open("Rectangle.json", "r") as file:
+            content = file.read()
+
+        self.assertEqual(str, type(content))
+        try:
+            os.remove("Rectangle.json")
+        except Exception:
+            pass
 
 
 class TestBase_create(unittest.TestCase):
@@ -295,7 +417,7 @@ class TestBase_load_from_file(unittest.TestCase):
     """Defines test cases for the class method load_from_a_file"""
 
     @classmethod
-    def tearDown(self):
+    def tearDown(cls):
         """Delete any created files."""
         try:
             os.remove("Rectangle.json")
