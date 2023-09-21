@@ -66,6 +66,68 @@ class TestBase_init(unittest.TestCase):
             print(b10.id.__nb_instances)
 
 
+class TestBase_create(unittest.TestCase):
+    """Test cases for testing  the class
+        method create  of Base class.
+        """
+
+    def test_create_square_equals(self):
+        """Test equal square"""
+        sq1 = Square(3, 5, 1, 7)
+        sq1_dict = sq1.to_dictionary()
+        sq2 = Square.create(**sq1_dict)
+        self.assertNotEqual(sq1, sq2)
+
+    def test_create_square_original(self):
+        """Test original square with the dict output"""
+        sq1 = Square(3, 5, 1, 7)
+        sq1_dict = sq1.to_dictionary()
+        sq2 = Square.create(**sq1_dict)
+        self.assertEqual("[Square] (7) 5/1 - 3", str(sq1))
+
+    def test_create_square_new(self):
+        """Test new square with the create method output"""
+        sq1 = Square(3, 5, 1, 7)
+        sq1_dict = sq1.to_dictionary()
+        sq2 = Square.create(**sq1_dict)
+        self.assertEqual("[Square] (7) 5/1 - 3", str(sq2))
+
+    def test_create_square_is(self):
+        """Test if sq1 & sq2 """
+        sq1 = Square(3, 5, 1, 7)
+        sq1_dict = sq1.to_dictionary()
+        sq2 = Square.create(**sq1_dict)
+        self.assertIsNot(sq1, sq2)
+
+    def test_create_rectangle_original(self):
+        """Test original rectangle with the original output"""
+        rect1 = Rectangle(3, 5, 1, 2, 7)
+        rect1_dict = rect1.to_dictionary()
+        rect2 = Rectangle.create(**rect1_dict)
+        self.assertEqual("[Rectangle] (7) 1/2 - 3/5", str(rect1))
+
+    def test_create_rectangle_new(self):
+        """Test the create method output"""
+        rect1 = Rectangle(3, 5, 1, 2, 7)
+        rect1_dict = rect1.to_dictionary()
+        rect2 = Rectangle.create(**rect1_dict)
+        self.assertEqual("[Rectangle] (7) 1/2 - 3/5", str(rect2))
+
+    def test_create_rectangle_is(self):
+        """Test if rect1 and rect2"""
+        rect1 = Rectangle(3, 5, 1, 2, 7)
+        rect1_dict = rect1.to_dictionary()
+        rect2 = Rectangle.create(**rect1_dict)
+        self.assertIsNot(rect1, rect2)
+
+    def test_create_rectangle_equals(self):
+        """Test for equality"""
+        rect1 = Rectangle(3, 5, 1, 2, 7)
+        rect1_dict = rect1.to_dictionary()
+        rect2 = Rectangle.create(**rect1_dict)
+        self.assertNotEqual(rect1, rect2)
+
+
 class TestBase_to_json_string(unittest.TestCase):
     """Defines test cases for the static method to_json_string"""
 
