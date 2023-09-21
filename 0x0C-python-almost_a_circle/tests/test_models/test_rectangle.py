@@ -108,7 +108,7 @@ class TestRectangle_init(unittest.TestCase):
         with self.assertRaises(AttributeError):
             print(rect.__y)
 
-    # None integer value as width input
+    # Non-integer value as width input
     def test_width_as_string(self):
         """Test width with a string input"""
         with self.assertRaises(TypeError):
@@ -246,7 +246,7 @@ class TestRectangle_init(unittest.TestCase):
 class TestRectangle_validate_attributes(unittest.TestCase):
     """Defines test cases for x and y instance attribute value"""
 
-    # None integer value as x input
+    # Non-integer value as x input
     def test_x_as_string(self):
         """Test x with a string input"""
         with self.assertRaises(TypeError):
@@ -313,7 +313,7 @@ class TestRectangle_validate_attributes(unittest.TestCase):
         with self.assertRaises(ValueError):
             rect = Rectangle(1, 2, -3)
 
-    # None integer value as y input
+    # Non-integer value as y input
     def test_y_as_string(self):
         """Test y with a string input"""
         with self.assertRaises(TypeError):
