@@ -197,3 +197,56 @@ class Base:
 
         except FileNotFoundError:
             return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Opens a window and draws all the Rectangles
+        and Squares using the turtle module.
+
+        args:
+             list_rectangles: A list of Rectangles to draw
+             list_squares: A list of squares to draw
+        """
+        import turtle
+
+        turtle.penup()
+        turtle.pensize(10)
+        turtle.bgcolor("cyan")
+        turtle.color("white")
+        turtle.hideturtle()
+        turtle.goto(-250, 250)
+        turtle.speed(0)
+
+        def draw_shape(instance):
+            """Draw a rectangle or square with specified
+            dimensions and move the turtle's position.
+
+            Args:
+                 instance: An instance of Rectangle or Square
+                 with width and height (or size).
+
+            Description: This function draws the shape with the
+            given dimensions, advances the turtle's position,
+            and positions it for the next shape to be drawn.
+            """
+
+            turtle.pendown()
+            for _ in range(2):
+                turtle.forward(instance.width)
+                turtle.right(90)
+                turtle.forward(instance.height)
+                turtle.right(90)
+            turtle.penup()
+            move_by = instance.width + 50
+            x_coordinate = round(turtle.xcor(), 5)
+            turtle.goto(x_coordinate + move_by, turtle.ycor())
+
+        for rect in list_rectangles:
+            draw_shape(rect)
+
+        turtle.goto(-250, 100)
+
+        for sq in list_squares:
+            draw_shape(sq)
+
+        turtle.exitonclick()
