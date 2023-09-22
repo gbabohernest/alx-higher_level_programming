@@ -3,6 +3,7 @@
 Its goal is to manage id attribute in all future classes.
 """
 import json
+import csv
 
 
 class Base:
@@ -135,3 +136,64 @@ class Base:
             pass
 
         return instances
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Serialize a CSV list of objects to a file
+
+        args:
+            list_objs(list): A list of inherited Base instances
+        """
+        filename = cls.__name__ + ".csv"
+
+        with open(filename, mode="w", newline='', encoding="UTF8") as fp:
+
+            writer = csv.writer(fp)
+
+            for item in list_objs:
+                item_dict = item.to_dictionary()
+
+                if cls.__name__ == "Rectangle":
+                    row = [item_dict["id"], item_dict["width"],
+                           item_dict["height"],
+                           item_dict["x"], item_dict["y"]]
+                elif cls.__name__ == "Square":
+                    row = [item_dict["id"], item_dict["size"],
+                           item_dict["x"], item_dict["y"]]
+
+                writer.writerow(row)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Deserialize a csv file and return
+        a list of classes instantiated from a CSV file
+
+        # csv (comma-separated values)
+
+        Returns:
+                If the file exists - a list of classes instance
+                otherwise - an empty list
+        """
+
+        file_name = cls.__name__ + ".csv"
+        try:
+            with open(file_name, "r", newline="") as csvfile_pointer:
+                if cls.__name__ == "Rectangle":
+                    fields = ["id", "width", "height", "x", "y"]
+                else:
+                    fields = ["id", "size", "x", "y"]
+
+                reader = csv.DictReader(csvfile_pointer, fieldnames=fields)
+                new_list_dicts = []
+                for rd in reader:
+                    new_dict = {}
+                    for key, value in rd.items():
+                        new_dict[key] = int(value)
+                    new_list_dicts.append(new_dict)
+                result = []
+                for dict_obj in new_list_dicts:
+                    result.append(cls.create(**dict_obj))
+                return result
+
+        except FileNotFoundError:
+            return []
