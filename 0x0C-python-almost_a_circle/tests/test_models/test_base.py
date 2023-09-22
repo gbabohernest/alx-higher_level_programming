@@ -188,6 +188,77 @@ class TestBase_save_to_file(unittest.TestCase):
             pass
 
 
+class TestBase_save_to_file_csv(unittest.TestCase):
+    """Defines test for the method save_to_file_cvs"""
+
+    def tearDown(self):
+        """Delete created file after each test case"""
+        try:
+            os.remove("Base.csv")
+        except FileNotFoundError:
+            pass
+        try:
+            os.remove("Square.csv")
+        except FileNotFoundError:
+            pass
+        try:
+            os.remove("Rectangle.csv")
+        except FileNotFoundError:
+            pass
+
+    def test_save_to_file_csv_more_than_one_arg(self):
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv([], 1)
+
+    def test_save_to_file_csv_no_args(self):
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv()
+
+    def test_save_to_file_csv_empty_list(self):
+        Square.save_to_file_csv([])
+        with open("Square.csv", "r") as fd:
+            self.assertEqual("", fd.read())
+
+    def test_save_to_file_csv_overwrite(self):
+        """Test saving a square instance which
+        over-writes another sq instance
+        """
+        sq = Square(9, 2, 39, 2)
+        Square.save_to_file_csv([sq])
+        sq = Square(10, 7, 2, 8)
+        Square.save_to_file_csv([sq])
+        with open("Square.csv", "r") as fd:
+            self.assertTrue("8,10,7,2", fd.read())
+
+    def test_save_to_file_csv_square_one(self):
+        """Test saving a square instance as csv file"""
+        sq = Square(30, 17, 22, 18)
+        Square.save_to_file_csv([sq])
+        with open("Square.csv", "r") as fd:
+            self.assertTrue("18,30,17,22", fd.read())
+
+    def test_save_to_file_csv_squares_two(self):
+        """Test saving two square instances as csv file"""
+        sq1 = Square(30, 17, 22, 18)
+        sq2 = Square(18, 1, 12, 23)
+        Square.save_to_file_csv([sq1, sq2])
+        with open("Square.csv", "r") as fd:
+            self.assertTrue("18,30,17,22\n23,18,11,12", fd.read())
+
+    def test_save_to_file_csv_rectangle_one(self):
+        rect = Rectangle(5, 17, 2, 8, 15)
+        Rectangle.save_to_file_csv([rect])
+        with open("Rectangle.csv", "r") as fd:
+            self.assertTrue("15,5,17,2,8", fd.read())
+
+    def test_save_to_file_csv_rectangles_two(self):
+        rect1 = Rectangle(5, 17, 2, 8, 5)
+        rect2 = Rectangle(2, 4, 1, 2, 3)
+        Rectangle.save_to_file_csv([rect1, rect2])
+        with open("Rectangle.csv", "r") as fd:
+            self.assertTrue("15,5,17,2,8\n2,4,1,2,3", fd.read())
+
+
 class TestBase_create(unittest.TestCase):
     """Test cases for testing  the class
         method create  of Base class.
