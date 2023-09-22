@@ -75,15 +75,11 @@ class TestBase_save_to_file(unittest.TestCase):
         """Delete any created files."""
         try:
             os.remove("Rectangle.json")
-        except IOError:
+        except FileNotFoundError:
             pass
         try:
             os.remove("Square.json")
-        except IOError:
-            pass
-        try:
-            os.remove("Base.json")
-        except IOError:
+        except FileNotFoundError:
             pass
 
     def test_save_to_file_into_json(self):
@@ -603,3 +599,69 @@ class TestBase_load_from_file(unittest.TestCase):
         Rectangle.save_to_file([rect1, rect2])
         output = Rectangle.load_from_file()
         self.assertTrue(all(type(obj) == Rectangle for obj in output))
+
+
+class TestBase_load_from_file_csv(unittest.TestCase):
+    """Defines tests for load_from_file method"""
+
+    def tearDown(self):
+        """Delete created files after each test case"""
+
+        try:
+            os.remove("Rectangle.csv")
+        except FileNotFoundError:
+            pass
+        try:
+            os.remove("Square.csv")
+        except FileNotFoundError:
+            pass
+
+    def test_load_from_file_csv_more_args(self):
+        with self.assertRaises(TypeError):
+            Base.load_from_file_csv([], 1)
+
+    def test_load_from_file_csv_empty_file_arg(self):
+        output = Square.load_from_file_csv()
+        self.assertEqual([], output)
+
+    def test_load_from_file_csv_sq_types(self):
+        sq1 = Square(25, 11, 23, 33)
+        sq2 = Square(19, 15, 12, 13)
+        Square.save_to_file_csv([sq1, sq2])
+        output = Square.load_from_file_csv()
+        self.assertTrue(all(type(obj) == Square for obj in output))
+
+    def test_load_from_file_csv_rect_types(self):
+        rect1 = Rectangle(11, 17, 12, 18, 11)
+        rect2 = Rectangle(22, 24, 25, 26, 22)
+        Rectangle.save_to_file_csv([rect1, rect2])
+        output = Rectangle.load_from_file_csv()
+        self.assertTrue(all(type(obj) == Rectangle for obj in output))
+
+    def test_load_from_file_csv_first_sq_index(self):
+        sq1 = Square(25, 11, 23, 33)
+        sq2 = Square(19, 15, 12, 13)
+        Square.save_to_file_csv([sq1, sq2])
+        sq_output = Square.load_from_file_csv()
+        self.assertEqual(sq1.__str__(), str(sq_output[0]))
+
+    def test_load_from_file_csv__first_rect_index(self):
+        rect1 = Rectangle(11, 17, 12, 18, 11)
+        rect2 = Rectangle(22, 24, 25, 26, 22)
+        Rectangle.save_to_file_csv([rect1, rect2])
+        rect_output = Rectangle.load_from_file_csv()
+        self.assertEqual(rect1.__str__(), str(rect_output[0]))
+
+    def test_load_from_file_csv_multiple_square(self):
+        sq1 = Square(25, 11, 23, 33)
+        sq2 = Square(19, 15, 12, 13)
+        Square.save_to_file_csv([sq1, sq2])
+        sq_output = Square.load_from_file_csv()
+        self.assertEqual(sq2.__str__(), str(sq_output[1]))
+
+    def test_load_from_file_csv__second_rect_index(self):
+        rect1 = Rectangle(11, 17, 12, 18, 11)
+        rect2 = Rectangle(22, 24, 25, 26, 22)
+        Rectangle.save_to_file_csv([rect1, rect2])
+        rect_output = Rectangle.load_from_file_csv()
+        self.assertEqual(rect2.__str__(), str(rect_output[1]))
