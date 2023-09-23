@@ -34,12 +34,14 @@ class Base:
         of list_dictionaries
         """
         # return json.dumps(list_dictionaries) if list_dictionaries else "[]"
-        if list_dictionaries is None or len(list_dictionaries) == 0:
-            return "[]"
-        else:
+        try:
+            if not list_dictionaries:
+                return "[]"
+
             json_string = json.dumps(list_dictionaries)
             return json_string
-
+        except Exception:
+            pass
         # if list_dictionaries is None:
         #    return "[]"
 
