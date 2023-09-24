@@ -33,7 +33,6 @@ class Base:
         """Returns the JSON string representation
         of list_dictionaries
         """
-        # return json.dumps(list_dictionaries) if list_dictionaries else "[]"
         try:
             if not list_dictionaries:
                 return "[]"
@@ -42,16 +41,6 @@ class Base:
             return json_string
         except Exception:
             pass
-        # if list_dictionaries is None:
-        #    return "[]"
-
-        # if not isinstance(list_dictionaries, list):
-        #    raise TypeError("must be a list")
-
-        # if not all(isinstance(item, dict) for item in list_dictionaries):
-        #    raise TypeError("must be a list of dictionaries")
-
-        # return json.dumps(list_dictionaries) if list_dictionaries else "[]"
 
     @staticmethod
     def from_json_string(json_string):
