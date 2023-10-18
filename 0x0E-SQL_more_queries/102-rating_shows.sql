@@ -5,6 +5,6 @@
 SELECT `title`, SUM(`rate`) AS `rating`
 FROM `tv_shows` AS tv
 INNER JOIN `tv_show_ratings` AS rating_tv_show
-ON tv.`id` = rating_tv-show.`show_id`
+ON tv.`id` = rating_tv_show.`show_id`
 GROUP BY `title`
 ORDER BY `rating` DESC;
