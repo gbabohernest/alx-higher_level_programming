@@ -1,6 +1,6 @@
 # 0x0E. SQL - More queries
 
-### Learning objectives
+## Learning objectives
 At the end of this project,  you are expected to be able to:
 
 ### General
@@ -12,3 +12,8 @@ At the end of this project,  you are expected to be able to:
  - How to retrieve datas from multiple tables in one request
  - What are subqueries
  - What are ```JOIN``` and ```UNION```
+
+
+### Tasks
+
+**0. My privileges!**
