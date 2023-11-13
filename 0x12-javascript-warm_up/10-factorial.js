@@ -1,8 +1,5 @@
 #!/usr/bin/node
 
-const args = process.argv.slice(2);
-const firstArg = args[0];
-
 const factorialRecursive = (num) => {
   if (isNaN(parseInt(num))) {
     return 1;
@@ -11,7 +8,8 @@ const factorialRecursive = (num) => {
     return 1;
   }
 
-  return parseInt(num) * factorialRecursive(parseInt(num) - 1);
+  return parseInt(num) * factorialRecursive(num - 1);
 };
 
-console.log(factorialRecursive(firstArg));
+const arg = process.argv[2];
+console.log(factorialRecursive(arg));
