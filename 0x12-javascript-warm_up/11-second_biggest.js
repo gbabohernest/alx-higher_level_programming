@@ -10,7 +10,7 @@ function secondBiggest (arr) {
 
   let maxVal;
   let secondMaxVal;
-  if (arr[0] > arr[1]) {
+  if (parseInt(arr[0]) > parseInt(arr[1])) {
     maxVal = arr[0];
     secondMaxVal = arr[1];
   } else {
@@ -19,14 +19,14 @@ function secondBiggest (arr) {
   }
 
   for (let i = 2; i < arrLen; i++) {
-    if (arr[i] > maxVal) {
+    if (parseInt(arr[i]) > parseInt(maxVal)) {
       secondMaxVal = maxVal;
       maxVal = arr[i];
-    } else if (arr[i] > secondMaxVal && arr[i] !== maxVal) {
+    } else if (parseInt(arr[i]) > parseInt(secondMaxVal) && parseInt(arr[i]) !== parseInt(maxVal)) {
       secondMaxVal = arr[i];
     }
   }
-  return (secondMaxVal);
+  return (parseInt(secondMaxVal));
 }
 
 console.log(secondBiggest(args));
