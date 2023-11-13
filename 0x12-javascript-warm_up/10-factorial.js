@@ -11,7 +11,7 @@ const factorialRecursive = (num) => {
     return 1;
   }
 
-  return parseInt(num) * factorialRecursive(num - 1);
+  return parseInt(num) * factorialRecursive(parseInt(num) - 1);
 };
 
 console.log(factorialRecursive(firstArg));
