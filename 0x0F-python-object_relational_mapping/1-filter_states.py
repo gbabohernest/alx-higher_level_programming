@@ -2,7 +2,7 @@
 
 """This module lists all states with a name starting with N
    from the database hbtn_0e_0_usa in ascending order using
-   MySQLdb package.
+   MySQLdb module.
 """
 
 if __name__ == "__main__":

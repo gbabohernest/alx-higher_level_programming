@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """This module lists all states from the database hbtn_0e_0_usa
-    in ascending order using MySQLdb package.
+    in ascending order using MySQLdb module.
 """
 
 if __name__ == "__main__":
