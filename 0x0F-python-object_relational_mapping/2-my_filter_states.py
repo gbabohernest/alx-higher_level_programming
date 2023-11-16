@@ -16,10 +16,10 @@ if __name__ == "__main__":
     db_cursor = db.cursor()
     query = (
         "SELECT id, name FROM `states` "
-        "WHERE name LIKE %s "
-        "ORDER BY states.id ASC"
+        "WHERE name=('{}') "
+        "ORDER BY states.id ASC".format(searched_query)
     )
-    db_cursor.execute(query, (searched_query,))
+    db_cursor.execute(query)
     rows = db_cursor.fetchall()
 
     for row in rows:
