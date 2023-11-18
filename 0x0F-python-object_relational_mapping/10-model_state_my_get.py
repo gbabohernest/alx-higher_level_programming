@@ -18,11 +18,9 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
 
     with Session() as session:
-        searched_query = session.query(State).order_by(State.id).filter_by(name=state_name)
-        if searched_query is not None:
-            for sq in searched_query:
-                print(f"{sq.id}")
-                break
+        sq = session.query(State).order_by(State.id).filter_by(
+                        name=state_name).first()
+        if sq is not None:
+            print(f"{sq.id}")
         else:
             print("Not found")
-
