@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """This module lists all cities from the database
-   hbtn_0e_0_usa in ascending order using MySQLdb module.
+   hbtn_0e_4_usa in ascending order using MySQLdb module.
 """
 
 if __name__ == "__main__":
