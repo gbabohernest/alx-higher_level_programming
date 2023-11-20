@@ -6,6 +6,7 @@
 from relationship_state import Base, State
 from sqlalchemy import Column, Integer, String, ForeignKey
 
+
 class City(Base):
     """Defines a class that inherts from Base
     and link the MQSQL table cities using SQLAlchemy
