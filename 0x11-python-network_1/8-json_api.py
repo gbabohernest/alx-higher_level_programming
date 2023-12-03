@@ -10,7 +10,7 @@ import sys
 import requests
 
 
-def search_api(letter=""):
+def search_api(letter):
     """Sends a POST request to a URL with a letter as a parameter,
           displays [<id>] <name> if the response body is properly JSON
           formatted and not empty. Otherwise, displays appropriate messages.
