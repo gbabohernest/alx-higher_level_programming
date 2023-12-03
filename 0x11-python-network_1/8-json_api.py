@@ -20,12 +20,15 @@ def search_api(letter=""):
 
     try:
         with requests.post(url, data=q) as response:
+            response.raise_for_status()
             res_dict = response.json()
             if res_dict:
                 print("[{}] {}".format(res_dict['id'], res_dict['name']))
             else:
                 print("No result" if not response.text else "Not a valid JSON")
-    except requests.exceptions.InvalidJSONError as err:
+
+    # except requests.exceptions.InvalidJSONError as err:
+    except ValueError:
         print("Not a valid JSON")
 
 
