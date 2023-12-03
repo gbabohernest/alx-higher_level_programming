@@ -19,7 +19,8 @@ def display_http_error_code(resource):
         if response.status_code >= 400:
             print("Error code: {}".format(response.status_code))
 
-        print(response.text)
+        else:
+            print(response.text)
 
 
 if __name__ == "__main__":
