@@ -16,7 +16,11 @@ def search_api(letter):
           formatted and not empty. Otherwise, displays appropriate messages.
     """
     url = 'http://0.0.0.0:5000/search_user'
-    q = {'q': letter}
+    q = {}
+    if letter:
+        q['q'] = letter
+    else:
+        q['q'] = ''
 
     try:
         with requests.post(url, data=q) as response:
@@ -33,5 +37,5 @@ def search_api(letter):
 
 
 if __name__ == "__main__":
-    arg = sys.argv[1] if len(sys.argv) > 1 else ""
+    arg = sys.argv[1]
     search_api(arg)
