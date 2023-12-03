@@ -10,17 +10,17 @@ import sys
 import requests
 
 
-def search_api(letter=""):
+def search_api(letter):
     """Sends a POST request to a URL with a letter as a parameter,
           displays [<id>] <name> if the response body is properly JSON
           formatted and not empty. Otherwise, displays appropriate messages.
     """
     url = 'http://0.0.0.0:5000/search_user'
-    q = {}
-    if letter:
-        q['q'] = letter
-    else:
-        q['q'] = ''
+    # q = {}
+    # if letter:
+    #    q['q'] = letter
+    # else:
+    #    q['q'] = ''
 
     try:
         with requests.post(url, data=q) as response:
@@ -29,7 +29,7 @@ def search_api(letter=""):
             if 'id' in res_dict and 'name' in res_dict:
                 print("[{}] {}".format(res_dict['id'], res_dict['name']))
             else:
-                print("No result" if not response.text else "Not a valid JSON")
+                print("No result")
 
     # except requests.exceptions.InvalidJSONError as err:
     except ValueError:
@@ -37,5 +37,9 @@ def search_api(letter=""):
 
 
 if __name__ == "__main__":
-    arg = sys.argv[1]
-    search_api(arg)
+    q = {}
+    if len(sys.argv) >= 2:
+        q['q'] = sys.argv[1]
+    else:
+        q['q'] = ""
+    search_api(q)
