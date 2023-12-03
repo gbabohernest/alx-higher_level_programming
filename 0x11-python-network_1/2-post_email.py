@@ -19,7 +19,8 @@ def post_an_email(resource, email_address):
     with request.urlopen(resource, data=data) as response:
         response_body = response.read().decode('utf-8')
         # print(help(response_body))
-        print("Your email is: {}".format(response_body))
+        # print("Your email is: {}".format(response_body))
+        print(response_body)
 
 
 if __name__ == "__main__":
