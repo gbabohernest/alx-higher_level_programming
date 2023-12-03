@@ -16,11 +16,10 @@ def display_http_error_code(resource):
        <status code> if HTTP status code is >= 400
     """
     with requests.get(resource) as response:
-        if response.status_code >= 400:
-            print("Error code: {}".format(response.status_code))
-
-        else:
+        if response.ok:
             print(response.text)
+        else:
+            print("Error code: {}".format(response.status_code))
 
 
 if __name__ == "__main__":
