@@ -16,7 +16,7 @@ def display_response_header_value(resource):
     with requests.get(resource) as response:
         # print(dir(response))
         response_dict = response.headers
-        print(response_dict['X-Request-Id'])
+        print(response_dict.get('X-Request-Id'))
 
 
 if __name__ == "__main__":
