@@ -10,7 +10,7 @@ import sys
 import requests
 
 
-def search_api(letter):
+def search_api(letter=""):
     """Sends a POST request to a URL with a letter as a parameter,
           displays [<id>] <name> if the response body is properly JSON
           formatted and not empty. Otherwise, displays appropriate messages.
@@ -26,7 +26,7 @@ def search_api(letter):
         with requests.post(url, data=q) as response:
             response.raise_for_status()
             res_dict = response.json()
-            if res_dict:
+            if 'id' in res_dict and 'name' in res_dict:
                 print("[{}] {}".format(res_dict['id'], res_dict['name']))
             else:
                 print("No result" if not response.text else "Not a valid JSON")
