@@ -15,8 +15,10 @@ def post_an_email(resource, email_address):
     """
     data = {'email': email_address}
     with requests.post(resource, data=data) as response:
-        response_dict = response.json()
-        print(response_dict.get('text'))
+        # response_dict = response.json()
+        # print(response_dict.get('text'))
+        res = response.text
+        print(res)
 
 
 if __name__ == "__main__":
